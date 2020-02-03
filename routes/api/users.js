@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const wodbookController = require("../../controllers/wodbook");
+const usersController = require("../../controllers/usersController");
 
 // Matches with "/api/users"
 router
 	.route("/")
-	.get(wodbookController.findAll)
-	.post(wodbookController.create);
+	// .get(wodbookController.findAll)
+	.post(usersController.create);
 
 // Matches with "/api/books/:id"
 // router

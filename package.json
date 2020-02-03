@@ -20,7 +20,7 @@
   "license": "ISC",
   "homepage": "https://github.com/parthmparmar/Project3-HIIT-Social-Media#readme",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.2",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
     "mongoose": "^5.8.11"
