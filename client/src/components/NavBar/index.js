@@ -24,8 +24,8 @@ function NavBar() {
 						<Link to="/register" className="nav-item nav-link">
 							Sign Up
 						</Link>
-						<Link to="/" className="nav-item nav-link">
-								Logout
+						<Link to="/dashboard" className="nav-item nav-link">
+								Dashboard
 						</Link>
 					</div>
 				</div>

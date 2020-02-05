@@ -1,16 +1,18 @@
 import axios from "axios";
 
 export default {
-
-	// Gets the book with the given id
+	// Login the user and authenticate
 	getUser: function(userData) {
 		return axios.post("/api/user/signin", userData);
 	},
 
+	// Update User profile
+	updateUser: function(userData) {
+		return axios.post("/api/user/update", userData);
+	},
+
 	// Saves User to the database
 	saveUser: function(userData) {
-		console.log(userData)
 		return axios.post("/api/user/signup", userData);
 	}
-
 };
