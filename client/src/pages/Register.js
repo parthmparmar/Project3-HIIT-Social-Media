@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import API from "../utils/API";
+import { Redirect } from "react-router-dom";
 
-class index extends Component {
+class Register extends Component {
 	state = {
 		email: "",
-		password: ""
+		password: "",
+		redirect: null
 	};
 
 	handleInputChange = event => {
@@ -21,24 +23,46 @@ class index extends Component {
 				email: this.state.email,
 				password: this.state.password
 			})
-				.then(res => console.log(res.data))
-				.catch(err => console.log(err));
+				.then(res =>{
+					console.log(res);
+					this.setState({ redirect: "/" });
+				})
+				.catch(err =>	console.log(err));
 		}
 	};
 
 	render() {
+		 if (this.state.redirect) {
+				return <Redirect to={this.state.redirect} />;
+		 }
+
 		return (
 			<div className="container rounded shadow p-4 mt-4 w-25">
 				<h4>Register</h4>
 				<form>
 					<div className="form-group">
-						<label htmlFor="email">Email address</label>
-						<input id="email" type="email" className="form-control" value={this.state.email} onChange={this.handleInputChange} name="email" />
+						<label htmlFor="email">Email</label>
+						<input
+							className="form-control"
+							onChange={this.handleInputChange}
+							value={this.state.email}
+							name="email"
+							id="email"
+							type="email"
+						/>
 					</div>
 					<div className="form-group">
 						<label htmlFor="password">Password</label>
-						<input id="password" type="password" className="form-control" value={this.state.password} onChange={this.handleInputChange} name="password" />
+						<input
+							className="form-control"
+							onChange={this.handleInputChange}
+							value={this.state.password}
+							name="password"
+							id="password"
+							type="password"
+						/>
 					</div>
+
 					<button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>
 						Submit
 					</button>
@@ -47,5 +71,4 @@ class index extends Component {
 		);
 	}
 }
-
-export default index;
+export default Register;

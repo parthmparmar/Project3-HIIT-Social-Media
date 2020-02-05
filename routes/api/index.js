@@ -1,8 +1,9 @@
-
 const router = require("express").Router();
-const userRoutes = require("./users");
+// const passport = require("passport");
+const userRoutes = require("./user");
+// var app = require("express")();
 
-// Book routes
-router.use("/users", userRoutes);
+// app.use(function (req, res, next) { passport.authenticate("local"); next(); });
+router.use("/user", userRoutes);
 
 module.exports = router;
