@@ -13,6 +13,21 @@ const UserSchema = new Schema({
 	password: {
 		type: String,
 		required: true
+	},
+	firstName: {
+		type: String
+	},
+	lastName: {
+		type: String
+	},
+	gender: {
+		type: String
+	},
+	birthday: {
+		type: Date
+	},
+	box: {
+		type: String
 	}
 });
 
@@ -35,11 +50,20 @@ UserSchema.pre("save", function(next) {
 	}
 });
 
+// This method will be added to each new user and it will be use to 
+// authenticate user
 UserSchema.methods.comparePassword = function(candidatePassword, checkPassword) {
   bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
     if(err) return checkPassword(err);
     checkPassword(null, isMatch);
   });
+}
+
+// Method will calculate user's age
+UserSchema.methods.calculateAge = function() {
+	var ageDifMs = Date.now() - this.birthday.getTime();
+	var ageDate = new Date(ageDifMs);
+	return Math.abs(ageDate.getDate.getUTCFullYear() - 1970);
 }
 
 const User = mongoose.model("User", UserSchema);

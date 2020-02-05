@@ -25,6 +25,7 @@ class Landing extends Component {
 			})
 				.then(res => {
 					this.props.isAuthed();
+					this.props.assignUser(res.data);
 					this.setState({redirect: "/dashboard"});
 				})
 				.catch(err => console.log(err));
