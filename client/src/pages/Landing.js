@@ -26,7 +26,13 @@ class Landing extends Component {
 				.then(res => {
 					this.props.isAuthed();
 					this.props.assignUser(res.data);
-					this.setState({redirect: "/dashboard"});
+					if (res.data.firstName){
+						this.setState({redirect: "/dashboard"});
+					}
+					else{
+						this.setState({redirect: "/userRegister"});
+					}
+					
 				})
 				.catch(err => console.log(err));
 		}

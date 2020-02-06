@@ -13,15 +13,33 @@ module.exports = {
 				if(!isMatch) return res.status(400).json({
 					message: "Wrong Password"
 				});
-				res.status(200).send(user);
+				// console.log(user.calculateAge());
+				userData = user.filterUserData();
+				userData.age = user.calculateAge();
+				res.status(200).send(userData);
 			});
 		});
 	},
 
 	// Update user profile into DB
 	updateUser: function(req, res) {
-		//TODO: add code to update user info
-		res.status(200).send({message: "Hit the 'updateUser' controller"});
+		userId = req.body.userId;
+		userData = {
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			birthday: req.body.birthday,
+			gender: req.body.gender,
+			box: req.body.box
+		}
+
+		db.User.findByIdAndUpdate(userId, userData, {new: true}, function(err, dbUser){
+			if (err){
+				res.status(500).send({message:"Error in updating user data"});
+				return;
+			}
+			res.status(200).send(dbUser);
+		});
+
 	},
 
 	// Save new user to DB 

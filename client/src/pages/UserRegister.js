@@ -24,6 +24,7 @@ class UserRegister extends Component {
 		event.preventDefault();
 		if (this.state.firstName && this.state.lastName) {
 			API.updateUser({
+        userId: this.props.userData._id,
 				firstName: this.state.firstName,
 				lastName: this.state.lastName,
 				birthday: this.state.birthday,
@@ -31,8 +32,9 @@ class UserRegister extends Component {
 				box: this.state.box
 			})
 				.then(res => {
-          console.log(res.data.message);
-					// this.setState({ redirect: "/dashboard" });
+          console.log(res.data);
+          this.props.assignUser(res.data);
+					this.setState({ redirect: "/dashboard" });
 				})
 				.catch(err => console.log(err));
 		} else {

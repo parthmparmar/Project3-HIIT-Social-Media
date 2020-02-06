@@ -4,11 +4,11 @@ import Row from "../components/Row";
 import MembersCard from "../components/MembersCard";
 import UserInfo from "../components/UserInfo";
 
-function Dashboard() {
+function Dashboard(props) {
 		return (
       <Wrapper>
         <Row>
-          <UserInfo />
+          <UserInfo userData= {props.userData}/>
           <MembersCard />
         </Row>
       </Wrapper>
