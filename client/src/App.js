@@ -6,6 +6,7 @@ import Landing from "./pages/Landing";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import UserRegister from "./pages/UserRegister";
+import UserStats from "./pages/userStats";
 // import PrivateRoute from "./components/PrivateRoute";
 
 class App extends Component {
@@ -46,6 +47,9 @@ class App extends Component {
 						{/* Secondary User Registration Route */}
 						<PrivateRoute exact path="/userRegister" isAuthed={this.state.isAuthenticated}>
 							<UserRegister assignUser = {this.assignUser} userData = {this.state.userData} />
+						</PrivateRoute>	
+						<PrivateRoute exact path="/userStats" isAuthed={this.state.isAuthenticated}>
+							<UserStats assignUser = {this.assignUser} userData = {this.state.userData} />
 						</PrivateRoute>	
 						{/* Catch all Route - 404 page */}
 						<Route path="*" component={() => <p> 404 Page not found </p>} />

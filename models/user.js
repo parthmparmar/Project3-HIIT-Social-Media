@@ -48,7 +48,73 @@ const UserSchema = new Schema({
 			weight: Number,
 			date: Date
 		}
-	]
+	],
+	backSquat: [
+		{
+			backSquat: Number,
+			date: Date
+		}
+	],
+	cleanJerk: [
+		{
+			cleanJerk: Number,
+			date: Date
+		}
+	],
+	snatch: [
+		{
+			snatch: Number,
+			date: Date
+		}
+	],
+	deadlift: [
+		{
+			cleanJerk: Number,
+			date: Date
+		}
+	],
+	overHeadPress: [
+		{
+			cleanJerk: Number,
+			date: Date
+		}
+	],
+	maxPullUps: [
+		{
+			cleanJerk: Number,
+			date: Date
+		}
+	],
+	fran: [
+		{
+			cleanJerk: Number,
+			date: Date
+		}
+	],
+	grace: [
+		{
+			cleanJerk: Number,
+			date: Date
+		}
+	],
+	hellen: [
+		{
+			cleanJerk: Number,
+			date: Date
+		}
+	],
+	fiveK: [
+		{
+			cleanJerk: Number,
+			date: Date
+		}
+	],
+	fourHundredMeter: [
+		{
+			cleanJerk: Number,
+			date: Date
+		}
+	],
 });
 
 // Hashing the password before saving to mongoDB
@@ -102,7 +168,18 @@ UserSchema.methods.filterUserData = function() {
 		box: this.box,
 		status: this.status,
 		height: this.height[0],
-		weight: this.weight[0]
+		weight: this.weight[0],
+		backsquat: this.backsquat,
+        cleanJerk: this.leanJerk,
+        snatch: this.snatch,
+        deadlift: this.deadlift,
+        overHeadPress: this.overHeadPress,
+        maxPullUps: this.maxPullUps,
+        fran: this.fran,
+        grace: this.grace,
+        hellen: this.hellen,
+        fiveK: this.fiveK,
+        fourHundredMeter: this.fourHundredMeter,
 	}
 }
 
