@@ -31,7 +31,24 @@ const UserSchema = new Schema({
 	},
 	status: {
 		type: String
-	}
+	},
+	myBox: [
+		{type: Schema.Types.ObjectId,
+		ref: "User"
+		}
+	],
+	height: [
+		{
+			height: Number,
+			date: Date
+		}
+	],
+	weight: [
+		{
+			weight: Number,
+			date: Date
+		}
+	]
 });
 
 // Hashing the password before saving to mongoDB
@@ -83,8 +100,15 @@ UserSchema.methods.filterUserData = function() {
 		lastName: this.lastName,
 		gender: this.gender,
 		box: this.box,
-		status: this.status
+		status: this.status,
+		height: this.height[0],
+		weight: this.weight[0]
 	}
+}
+
+UserSchema.methods.prependData = function(item, obj) {
+	array = this[item]
+	array.unshift(obj);
 }
 
 const User = mongoose.model("User", UserSchema);

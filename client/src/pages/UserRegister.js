@@ -10,6 +10,8 @@ class UserRegister extends Component {
     gender: "",
     birthday: "",
     box: "",
+    height: "",
+    weight: "",
 		redirect: null
 	};
 
@@ -29,7 +31,9 @@ class UserRegister extends Component {
 				lastName: this.state.lastName,
 				birthday: this.state.birthday,
 				gender: this.state.gender,
-				box: this.state.box
+        box: this.state.box,
+        height: this.state.height,
+        weight: this.state.weight
 			})
 				.then(res => {
           console.log(res.data);
@@ -81,7 +85,7 @@ class UserRegister extends Component {
           <Input 
             id="birthday"
             name="birthday"
-            type="text"
+            type="date"
             change={this.handleInputChange}
             state={this.state.birthday}
           >
@@ -95,6 +99,24 @@ class UserRegister extends Component {
             state={this.state.box}
           >
             Box
+          </Input>
+          <Input 
+            id="height"
+            name="height"
+            type="number"
+            change={this.handleInputChange}
+            state={this.state.height}
+          >
+            Height
+          </Input>
+          <Input 
+            id="weight"
+            name="weight"
+            type="number"
+            change={this.handleInputChange}
+            state={this.state.weight}
+          >
+            Weight lb
           </Input>
 
 					<button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>

@@ -13,7 +13,7 @@ module.exports = {
 				if(!isMatch) return res.status(400).json({
 					message: "Wrong Password"
 				});
-				// console.log(user.calculateAge());
+
 				userData = user.filterUserData();
 				userData.age = user.calculateAge();
 				res.status(200).send(userData);
@@ -23,21 +23,32 @@ module.exports = {
 
 	// Update user profile into DB
 	updateUser: function(req, res) {
-		userId = req.body.userId;
-		userData = {
+		const userId = req.body.userId;
+		const userData = {
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
 			birthday: req.body.birthday,
 			gender: req.body.gender,
-			box: req.body.box
-		}
+			box: req.body.box,
+		};
+		let heightObj = {height: req.body.height, date: new Date()};
+		let weightObj = {weight: req.body.weight, date: new Date()};
 
 		db.User.findByIdAndUpdate(userId, userData, {new: true}, function(err, dbUser){
 			if (err){
 				res.status(500).send({message:"Error in updating user data"});
 				return;
 			}
-			res.status(200).send(dbUser);
+			db.User.findByIdAndUpdate(userId, {$push:{height: {$each: [heightObj], $position:0}, weight: {$each: [weightObj], $position:0}}}, {new: true}, function(err, dbUser){
+				if (err){
+					res.status(500).send({message:"Error in updating user data"});
+					return;
+				}
+				userFilteredData = dbUser.filterUserData();
+				userFilteredData.age = dbUser.calculateAge();
+				res.status(200).send(userFilteredData);
+			});
+
 		});
 
 	},
