@@ -9,6 +9,7 @@ var StatsSchema = new Schema({
   cleanJerk: Number,
   snatch: Number,
   deadlift: Number,
+  OverHeadPress: Number,
   maxPullUps: Number,
   fran: Number,
   grace: Number,
