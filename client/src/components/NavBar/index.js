@@ -6,7 +6,7 @@ function NavBar() {
 	return (
 		<nav className="navbar navbar-expand-lg">
 			<Link to="/" className="navbar-bran">
-				<img id="logo" src="/assets/images/logo.png" />
+				<img id="logo" src="/assets/images/logo.png" alt="logo" />
 			</Link>
 			<button
 				id="togglerButton"
@@ -19,7 +19,7 @@ function NavBar() {
 				aria-label="Toggle navigation"
 			>
 				<span className="navbar-toggler-icon">
-					<i class="fas fa-bars"></i>
+					<i className="fas fa-bars"></i>
 				</span>
 			</button>
 			{/* Navbar Links */}

@@ -6,6 +6,7 @@ import Landing from "./pages/Landing";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import UserRegister from "./pages/UserRegister";
+import Login from "./pages/Login";
 
 class App extends Component {
 	state = {
@@ -37,15 +38,16 @@ class App extends Component {
 							render={props => <Landing isAuthed={this.isAuthenticated} assignUser={this.assignUser} userData={this.state.userData} />}
 						/>
 						{/* Initial User Signup Route */}
-						<Route exact path="/register" render={props => <Register/>} />
+						<Route exact path="/login" render={props => <Login isAuthed={this.isAuthenticated} assignUser={this.assignUser} />} />
+						<Route exact path="/register" render={props => <Register />} />
 						{/* User Profile/Dashboard Route */}
 						<PrivateRoute exact path="/dashboard" isAuthed={this.state.isAuthenticated}>
-							<Dashboard userData = {this.state.userData} />
+							<Dashboard userData={this.state.userData} />
 						</PrivateRoute>
 						{/* Secondary User Registration Route */}
 						<PrivateRoute exact path="/userRegister" isAuthed={this.state.isAuthenticated}>
-							<UserRegister assignUser = {this.assignUser} userData = {this.state.userData} />
-						</PrivateRoute>	
+							<UserRegister assignUser={this.assignUser} userData={this.state.userData} />
+						</PrivateRoute>
 						{/* Catch all Route - 404 page */}
 						<Route path="*" component={() => <p> 404 Page not found </p>} />
 					</Switch>

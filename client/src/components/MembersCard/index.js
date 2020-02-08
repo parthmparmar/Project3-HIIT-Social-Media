@@ -9,7 +9,7 @@ function MembersCard(props) {
                 <div className="card-img-overlay">
                     <h5 className="card-title">User Name</h5>
                     <p className="card-text">Gym</p>
-                    <button class="btn btn-primary"> + </button>
+                    <button className="btn btn-primary"> + </button>
                 </div>
             </div>
         </div>

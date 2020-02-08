@@ -4,19 +4,19 @@ function UserStats(props) {
 
     return (
         <div>
-        <div class="user-info card col-md-4" style={{ maxWidth: 600 }}>
-            {/* <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img src="/assets/avatar/avataaars.png" class="card-img" alt="avatar" />
+        <div className="user-info card col-md-4" style={{ maxWidth: 600 }}>
+            {/* <div className="row no-gutters">
+                <div className="col-md-4">
+                    <img src="/assets/avatar/avataaars.png" className="card-img" alt="avatar" />
                 </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">{props.userData.firstName}</h5>
-    <p class="card-text">{props.userData.status}</p>
+                <div className="col-md-8">
+                    <div className="card-body">
+                        <h5 className="card-title">{props.userData.firstName}</h5>
+    <p className="card-text">{props.userData.status}</p>
                     </div>
                 </div>
             </div> */}
-        <table class="table">
+        <table className="table">
             <thead>
               <tr>
                 <th scope="col">Exercise</th>
