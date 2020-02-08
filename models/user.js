@@ -48,7 +48,73 @@ const UserSchema = new Schema({
 			weight: Number,
 			date: Date
 		}
-	]
+	],
+	backSquat: [
+		{
+			backSquat: Number,
+			date: Date
+		}
+	],
+	cleanJerk: [
+		{
+			cleanJerk: Number,
+			date: Date
+		}
+	],
+	snatch: [
+		{
+			snatch: Number,
+			date: Date
+		}
+	],
+	deadlift: [
+		{
+			deadlift: Number,
+			date: Date
+		}
+	],
+	overHeadPress: [
+		{
+			overHeadPress: Number,
+			date: Date
+		}
+	],
+	maxPullUps: [
+		{
+			maxPullUps: Number,
+			date: Date
+		}
+	],
+	fran: [
+		{
+			fran: Number,
+			date: Date
+		}
+	],
+	grace: [
+		{
+			grace: Number,
+			date: Date
+		}
+	],
+	hellen: [
+		{
+			hellen: Number,
+			date: Date
+		}
+	],
+	fiveK: [
+		{
+			fiveK: Number,
+			date: Date
+		}
+	],
+	fourHundredMeter: [
+		{
+			fourHundredMeter: Number,
+			date: Date
+		}
+	],
 });
 
 // Hashing the password before saving to mongoDB
@@ -101,14 +167,20 @@ UserSchema.methods.filterUserData = function() {
 		gender: this.gender,
 		box: this.box,
 		status: this.status,
-		height: this.height[0],
-		weight: this.weight[0]
+		height: this.height[0] || {height: ""},
+		weight: this.weight[0]|| {weight: ""},
+		backSquat: this.backSquat[0] || {backSquat: ""},
+        cleanJerk: this.cleanJerk[0] || {cleanJerk: ""},
+        snatch: this.snatch[0] || {snatch: ""},
+        deadlift: this.deadlift[0] || {deadlift: ""},
+        overHeadPress: this.overHeadPress[0] || {overHeadPress: ""},
+        maxPullUps: this.maxPullUps[0] || {maxPullUps: ""},
+        fran: this.fran[0] || {fran: ""},
+        grace: this.grace[0] || {grace: ""},
+        hellen: this.hellen[0] || {hellen: ""},
+        fiveK: this.fiveK[0] || {fiveK: ""},
+        fourHundredMeter: this.fourHundredMeter[0] || {fourHundredMeter: ""},
 	}
-}
-
-UserSchema.methods.prependData = function(item, obj) {
-	array = this[item]
-	array.unshift(obj);
 }
 
 const User = mongoose.model("User", UserSchema);

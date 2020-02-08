@@ -27,6 +27,9 @@ function NavBar() {
 						<Link to="/dashboard" className="nav-item nav-link">
 								Dashboard
 						</Link>
+						<Link to="/userStats" className="nav-item nav-link">
+								User Stats
+						</Link>
 					</div>
 				</div>
 			</nav>

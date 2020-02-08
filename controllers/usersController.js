@@ -5,7 +5,12 @@ module.exports = {
 	findUser: function(req, res) {
 		//checks that email is present or not
 		db.User.findOne({"email": req.body.email}, (err, user) =>{
-			if(!user) res.json({message: "Login failed, user not found"})
+			// console.log(user)
+			if(!user) {
+				res.json({message: "Login failed, user not found"})
+				return
+			}
+			
 
 			// If email is found then it will compare password
 			user.comparePassword(req.body.password, (err, isMatch)=>{
@@ -16,6 +21,7 @@ module.exports = {
 
 				userData = user.filterUserData();
 				userData.age = user.calculateAge();
+				// console.log(userData)
 				res.status(200).send(userData);
 			});
 		});
@@ -52,6 +58,35 @@ module.exports = {
 		});
 
 	},
+
+	updateStats: function(req, res){
+		let statUpdateObj = {};
+		const updateArray = req.body.filteredDataArray
+		// console.log(updateArray);
+		
+		updateArray.forEach(element => {
+			var name = Object.keys(element);
+			var objAdd = {}
+			objAdd[name[0]] = element[name];
+			objAdd.date = new Date();
+			statUpdateObj[name[0]] = {$each: [objAdd], $position:0}
+		});
+		console.log(statUpdateObj);
+		const userId = req.body.userId;
+
+		db.User.findByIdAndUpdate(userId, {$push: statUpdateObj}, {new: true}, function(err, dbUser){
+			if (err){
+				res.status(500).send({message:"Error in updating user data"});
+				return;
+			}
+			userFilteredData = dbUser.filterUserData();
+			userFilteredData.age = dbUser.calculateAge();
+			res.status(200).send(userFilteredData);
+		});
+
+	
+	},
+
 
 	// Save new user to DB 
 	create: function(req, res) {
