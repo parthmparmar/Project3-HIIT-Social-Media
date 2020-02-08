@@ -3,7 +3,7 @@ import React from "react";
 function Wrapper(props) {
 
     return (
-        <div className="container">
+        <div className="container mt-3">
             {props.children}
         </div>
     )

@@ -14,7 +14,9 @@ class App extends Component {
 		userData: {}
 	};
 
-	
+	handleLogout = _ => {
+		this.setState({isAuthenticated: false});
+	}
 
 	assignUser = userData => {
 		this.setState({ userData: userData });
@@ -29,7 +31,7 @@ class App extends Component {
 		return (
 			<Router>
 				<div>
-					<NavBar />
+					<NavBar isAuthed={this.state.isAuthenticated} logout={this.handleLogout}/>
 					<Switch>
 						{/* Landing Page Route */}
 						<Route

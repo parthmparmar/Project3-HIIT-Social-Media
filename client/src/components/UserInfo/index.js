@@ -4,7 +4,7 @@ function UserInfo(props) {
 
     return (
         <div>
-            <div className="user-info card mb-3 mt-5" style={{ maxWidth: 600 }}>
+            <div id="user-info-card" className="card shadow mb-3">
                 <div className="row no-gutters">
                     <div className="col-md-4">
                         <img src="/assets/avatar/avataaars.png" className="card-img" alt="avatar" />

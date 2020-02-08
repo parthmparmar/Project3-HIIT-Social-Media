@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-function NavBar() {
+function NavBar(props) {
 	return (
 		<nav className="navbar navbar-expand-lg">
 			<Link to="/" className="navbar-bran">
@@ -26,16 +26,27 @@ function NavBar() {
 			{/* mr-auto mr-4 mt-2 mt-lg-0 */}
 			<div className="collapse navbar-collapse" id="navbarToggler">
 				<ul className="navbar-nav ml-md-auto">
-					<li className="nav-item">
-						<Link to="/login" className="nav-link ">
-							Log In
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to="/register" className="nav-link btn btn-outline-light ml-0 ml-lg-4 mt-lg-1" id="signupButton">
-							Sign Up
-						</Link>
-					</li>
+					{!props.isAuthed ? (
+						<li className="nav-item">
+							<Link to="/login" className="nav-link ">
+								Log In
+							</Link>
+						</li>
+					) : null}
+					{!props.isAuthed ? (
+						<li className="nav-item">
+							<Link to="/register" className="nav-link btn btn-outline-light ml-0 ml-lg-4 mt-lg-1" id="signupButton">
+								Sign Up
+							</Link>
+						</li>
+					) : null}
+					{props.isAuthed ? (
+						<li className="nav-item" onClick={ ()=> props.logout()}>
+							<Link to="/login" className="nav-link btn btn-outline-light ml-0 ml-lg-4 mt-lg-1" id="signupButton">
+								Log out
+							</Link>
+						</li>
+					) : null}
 				</ul>
 			</div>
 		</nav>

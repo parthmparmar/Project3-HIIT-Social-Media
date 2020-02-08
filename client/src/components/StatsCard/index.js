@@ -4,7 +4,7 @@ function UserStats(props) {
 
     return (
         <div>
-        <div className="user-info card col-md-4" style={{ maxWidth: 600 }}>
+        <div className="user-info card shadow" style={{ maxWidth: 600 }}>
             {/* <div className="row no-gutters">
                 <div className="col-md-4">
                     <img src="/assets/avatar/avataaars.png" className="card-img" alt="avatar" />
