@@ -1,0 +1,43 @@
+#logo {
+  width: 130px;
+  padding-bottom: 5px;
+}
+
+#togglerButton {
+  color: #C6E2F5;
+  outline: none;
+  margin-top: 5px;
+}
+
+.nav-link {
+  padding: 4px;
+  color: #fff;
+}
+
+@media only screen and (max-width: 992px) {
+  #togglerButton {
+    /* z-index: 999; */
+  }
+ #navbarToggler {
+   text-align: right;
+ }
+
+ #signupButton {
+  border: none;
+  box-shadow:unset;
+  text-align: right;
+ }
+
+ #signupButton:hover {
+  background-color: transparent;
+  color: rgb(49, 172, 230);
+ }
+
+ .nav-link:hover {
+    color: rgb(49, 172, 230);
+ }
+
+ .nav-link {
+   font-size: 1.1em;
+ }
+}

@@ -4,7 +4,7 @@ function UserInfo(props) {
 
     return (
         <div>
-            <div className="user-info card mb-3 mt-5" style={{ maxWidth: 600 }}>
+            <div id="user-info-card" className="card shadow mb-3">
                 <div className="row no-gutters">
                     <div className="col-md-4">
                         <img src="/assets/avatar/avataaars.png" className="card-img" alt="avatar" />
@@ -19,8 +19,8 @@ function UserInfo(props) {
                 <ul className="list-group list-group-horizontal">
                 <li className="list-group-item">Division: {firstLetterCap(props.userData.gender)}</li>
                 <li className="list-group-item">Age: {props.userData.age}</li>
-                {/* <li className="list-group-item">Height: {props.userData.height.height}</li> */}
-                {/* <li className="list-group-item">Weight: {props.userData.weight.weight} LB</li> */}
+                <li className="list-group-item">Height: {props.userData.height.height}</li>
+                <li className="list-group-item">Weight: {props.userData.weight.weight} LB</li>
                 <li className="list-group-item">Box: {props.userData.box}</li>
             </ul>
             </div>
