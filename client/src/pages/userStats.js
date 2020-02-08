@@ -75,7 +75,7 @@ class UserStats extends Component {
 		{fiveK: this.state.fiveK},
 		{fourHundredMeter: this.state.fourHundredMeter},
 		];
-		let filteredDataArray  = dataArray.filter(value => Object.values(value) !== "");
+		let filteredDataArray  = dataArray.filter(value => Object.values(value) != "");
 		console.log(filteredDataArray);
 			if (filteredDataArray) {
 				API.updateStats({
