@@ -14,7 +14,7 @@ function Dashboard(props) {
           <WodCard />
         </Row>
         <Row>
-        {/* <UserStatsCard userData= {props.userData}/> */}
+        <UserStatsCard userData= {props.userData}/>
         </Row>
       </Wrapper>
 		);

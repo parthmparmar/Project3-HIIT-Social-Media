@@ -69,49 +69,49 @@ const UserSchema = new Schema({
 	],
 	deadlift: [
 		{
-			cleanJerk: Number,
+			deadlift: Number,
 			date: Date
 		}
 	],
 	overHeadPress: [
 		{
-			cleanJerk: Number,
+			overHeadPress: Number,
 			date: Date
 		}
 	],
 	maxPullUps: [
 		{
-			cleanJerk: Number,
+			maxPullUps: Number,
 			date: Date
 		}
 	],
 	fran: [
 		{
-			cleanJerk: Number,
+			fran: Number,
 			date: Date
 		}
 	],
 	grace: [
 		{
-			cleanJerk: Number,
+			grace: Number,
 			date: Date
 		}
 	],
 	hellen: [
 		{
-			cleanJerk: Number,
+			hellen: Number,
 			date: Date
 		}
 	],
 	fiveK: [
 		{
-			cleanJerk: Number,
+			fiveK: Number,
 			date: Date
 		}
 	],
 	fourHundredMeter: [
 		{
-			cleanJerk: Number,
+			fourHundredMeter: Number,
 			date: Date
 		}
 	],

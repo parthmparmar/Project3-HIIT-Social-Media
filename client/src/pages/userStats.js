@@ -75,10 +75,11 @@ class UserStats extends Component {
 		{fiveK: this.state.fiveK},
 		{fourHundredMeter: this.state.fourHundredMeter},
 		];
-		let filteredDataArray  = dataArray.filter(value => Object.values(value) != "");
+		let filteredDataArray  = dataArray.filter(value => Object.values(value) !== "");
 		console.log(filteredDataArray);
 			if (filteredDataArray) {
 				API.updateStats({
+					userId: this.props.userData._id,
 		            filteredDataArray
 				})
 					.then(res => {
@@ -88,7 +89,7 @@ class UserStats extends Component {
 					})
 					.catch(err => console.log(err));
 			} else {
-		  console.log("First name and Last name are required");
+		  console.log("No Edits Made");
 		}
 	};
 

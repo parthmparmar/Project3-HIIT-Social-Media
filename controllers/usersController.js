@@ -60,7 +60,31 @@ module.exports = {
 	},
 
 	updateStats: function(req, res){
-		console.log(req.body.filteredDataArray);
+		let statUpdateObj = {};
+		const updateArray = req.body.filteredDataArray
+		// console.log(updateArray);
+		
+		updateArray.forEach(element => {
+			var name = Object.keys(element);
+			var objAdd = {}
+			objAdd[name[0]] = element[name];
+			objAdd.date = new Date();
+			statUpdateObj[name[0]] = {$each: [objAdd], $position:0}
+		});
+		console.log(statUpdateObj);
+		const userId = req.body.userId;
+
+		db.User.findByIdAndUpdate(userId, {$push: statUpdateObj}, {new: true}, function(err, dbUser){
+			if (err){
+				res.status(500).send({message:"Error in updating user data"});
+				return;
+			}
+			userFilteredData = dbUser.filterUserData();
+			userFilteredData.age = dbUser.calculateAge();
+			res.status(200).send(userFilteredData);
+		});
+
+	
 	},
 
 
