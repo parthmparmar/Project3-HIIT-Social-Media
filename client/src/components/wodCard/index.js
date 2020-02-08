@@ -4,7 +4,7 @@ function WodCard(props) {
 
     return (
 
-        <div className="card col-3" style={{width: 288}}>
+        <div className="card card mb-3 mt-5" style={{width: 288}}>
         <img src="..." className="card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">Random Wod!</h5>

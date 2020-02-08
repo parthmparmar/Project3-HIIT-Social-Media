@@ -5,13 +5,19 @@ import Row from "../components/Row";
 import UserInfo from "../components/UserInfo";
 import WodCard from "../components/wodCard";
 import UserStatsCard from "../components/StatsCard";
+import Col from "../components/Col";
 
 function Dashboard(props) {
 		return (
       <Wrapper>
         <Row>
-          <UserInfo userData= {props.userData}/>
-          <WodCard />
+          <Col size="md-6 sm-12"  >
+          <UserInfo  userData= {props.userData}/>
+          {/* <MembersCard /> */}
+          </Col >
+          <Col size="md-6 sm-12">
+          <WodCard  userData= {props.userData} />
+          </Col>
         </Row>
         <Row>
         <UserStatsCard userData= {props.userData}/>

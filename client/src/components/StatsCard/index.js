@@ -4,24 +4,15 @@ function UserStats(props) {
 
     return (
         <div>
-        <div className="user-info card col-md-4" style={{ maxWidth: 600 }}>
-            {/* <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img src="/assets/avatar/avataaars.png" class="card-img" alt="avatar" />
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">{props.userData.firstName}</h5>
-    <p class="card-text">{props.userData.status}</p>
-                    </div>
-                </div>
-            </div> */}
-        <table className="table">
+          <div className="row">
+          <i className="fas fa-dumbbell col-1"></i>
+            <div className= "col-3">
+        <table className="table .table-striped table-bordered">
             <thead>
-              <tr>
+              {/* <tr>
                 <th scope="col">Exercise</th>
                 <th scope="col">Weight/Time</th>
-              </tr>
+              </tr> */}
             </thead>
             <tbody>
               <tr>
@@ -44,6 +35,19 @@ function UserStats(props) {
                 <td>Overhead Press</td>
                 <td>{props.userData.overHeadPress.overHeadPress}</td>
               </tr>
+            </tbody>
+          </table>
+          </div>
+          <i className="fas fa-dumbbell col-1"></i>
+          <div className= "col-3">
+          <table className="table .table-striped table-bordered">
+            <thead>
+              {/* <tr>
+                <th scope="col">Exercise</th>
+                <th scope="col">Weight/Time</th>
+              </tr> */}
+            </thead>
+            <tbody>
               <tr>
                 <td>Max Pull Ups</td>
                 <td>{props.userData.maxPullUps.maxPullUps}</td>
@@ -60,6 +64,19 @@ function UserStats(props) {
                 <td>Hellen</td>
                 <td>{props.userData.hellen.hellen}</td>
               </tr>
+            </tbody>
+          </table>
+          </div>
+          <i className="fas fa-running col-1"></i>
+          <div className="col-3">
+          <table className="table .table-striped table-bordered">
+            <thead>
+              {/* <tr>
+                <th scope="col">Exercise</th>
+                <th scope="col">Weight/Time</th>
+              </tr> */}
+            </thead>
+            <tbody>
               <tr>
                 <td>5k Run</td>
                 <td>{props.userData.fiveK.fiveK}</td>
@@ -71,8 +88,8 @@ function UserStats(props) {
             </tbody>
           </table>
         </div>
+        </div>
     </div>
-
 
     )
 }
