@@ -3,7 +3,7 @@ import React from "react";
 function UserStats(props) {
 
     return (
-        <div>
+        <div style={{backgroundColor: "#fff"}}>
           <div className="row">
           <i className="fas fa-dumbbell col-1"></i>
             <div className= "col-3">

@@ -1,0 +1,51 @@
+#landing-page, #login-page {
+  color:#C0DEF4;
+}
+
+#form-container {
+  background-color: #202342;
+  border-radius: 20px;
+  box-shadow: 3px 3px 6px #141627;
+  color: #C0DEF4;
+}
+
+.form-group input {
+  background-color: #C6E2F5;
+}
+
+.tittle {
+  text-shadow: 1px 1px 2px #000;
+}
+
+form button {
+  background-color: #688EFD;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  color: #fff;
+  width: 100%;
+  margin-top: 20px;
+  box-shadow: 0px 5px 5px #141627;
+}
+
+a {
+  text-decoration: none !important
+}
+
+#crossfitters-image {
+  margin-top: -150px;
+}
+
+.nav-item {
+  font-size: 1.2em;
+}
+
+@media only screen and (max-width: 425px) {
+  .tittle {
+    font-size: 2.25em;
+  }
+
+  .lead {
+    font-size: 1.1em;
+  }
+}

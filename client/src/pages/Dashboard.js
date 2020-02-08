@@ -11,16 +11,19 @@ function Dashboard(props) {
 		return (
       <Wrapper>
         <Row>
-          <Col size="md-6 sm-12"  >
-          <UserInfo  userData= {props.userData}/>
-          {/* <MembersCard /> */}
-          </Col >
-          <Col size="md-6 sm-12">
-          <WodCard  userData= {props.userData} />
+          <Col size="12 lg-7">
+            <Row>
+              <Col size="12">
+                <UserInfo userData= {props.userData}/>
+              </Col>
+              <Col size="12">
+                <UserStatsCard userData= {props.userData}/>
+              </Col>
+            </Row>
           </Col>
-        </Row>
-        <Row>
-        <UserStatsCard userData= {props.userData}/>
+          <Col size="12 lg-5">
+            <WodCard />
+          </Col>
         </Row>
       </Wrapper>
 		);
