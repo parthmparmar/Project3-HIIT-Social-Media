@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
+import "./styles/landing.css";
 
 class Register extends Component {
 	state = {
 		email: "",
 		password: "",
+		password2: "",
 		redirect: null
 	};
 
@@ -18,56 +20,84 @@ class Register extends Component {
 
 	handleFormSubmit = event => {
 		event.preventDefault();
-		if (this.state.email && this.state.password) {
-			API.saveUser({
-				email: this.state.email,
-				password: this.state.password
-			})
-				.then(res =>{
-					console.log(res.data);
-					this.setState({ redirect: "/" });
+		if (this.state.password !== this.state.password2) {
+			console.error("Password must be the same!, Try Again");
+		} else {
+			if (this.state.email && this.state.password) {
+				API.saveUser({
+					email: this.state.email,
+					password: this.state.password
 				})
-				.catch(err =>	console.log(err));
+					.then(res => {
+						console.log(res.data);
+						this.setState({ redirect: "/login" });
+					})
+					.catch(err => console.log(err));
+			}
 		}
 	};
 
 	render() {
-		 if (this.state.redirect) {
-				return <Redirect to={this.state.redirect} />;
-		 }
+		if (this.state.redirect) {
+			return <Redirect to={this.state.redirect} />;
+		}
 
 		return (
-			<div className="container rounded shadow p-4 mt-4 w-25">
-				<h4>Register</h4>
-				<form>
-					<div className="form-group">
-						<label htmlFor="email">Email</label>
-						<input
-							className="form-control"
-							onChange={this.handleInputChange}
-							value={this.state.email}
-							name="email"
-							id="email"
-							type="email"
-						/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="password">Password</label>
-						<input
-							className="form-control"
-							onChange={this.handleInputChange}
-							value={this.state.password}
-							name="password"
-							id="password"
-							type="password"
-						/>
-					</div>
+			<main id="login-page">
+				<div className="row">
+					<div className="col-12 col-sm-8 col-md-5 col-lg-4 mx-auto">
+						<div id="form-container" className="p-5 mx-2 mt-2 mt-sm-5">
+							<h4 className="text-center">Join WODBook</h4>
+							<form className="mt-4">
+								<div className="form-group">
+									<label htmlFor="email">Email Address*</label>
+									<input
+										className="form-control"
+										onChange={this.handleInputChange}
+										value={this.state.email}
+										name="email"
+										id="email"
+										type="email"
+										placeholder="e.g., email@address.com"
+										required
+									/>
+								</div>
+								<div className="form-group">
+									<label htmlFor="password">Password*</label>
+									<input
+										className="form-control"
+										onChange={this.handleInputChange}
+										value={this.state.password}
+										name="password"
+										id="password"
+										type="password"
+										placeholder="●●●●●●●●●●●●"
+										required
+									/>
+								</div>
 
-					<button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>
-						Submit
-					</button>
-				</form>
-			</div>
+								<div className="form-group">
+									<label htmlFor="password2">Confirm Password*</label>
+									<input
+										className="form-control"
+										onChange={this.handleInputChange}
+										value={this.state.password2}
+										name="password2"
+										id="password2"
+										type="password"
+										placeholder="●●●●●●●●●●●●"
+										required
+									/>
+								</div>
+
+								<button type="submit" onClick={this.handleFormSubmit}>
+									Join
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</main>
 		);
 	}
 }

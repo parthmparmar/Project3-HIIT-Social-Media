@@ -43,7 +43,7 @@ class Landing extends Component {
 		}
 
 		return (
-			<main id="landing-page">
+			<main id="login-page">
 				<div className="row">
 					<div className="col-12 col-sm-8 col-md-5 col-lg-4 mx-auto">
 						<div id="form-container" className="p-5 mx-2 mt-2 mt-sm-5">
