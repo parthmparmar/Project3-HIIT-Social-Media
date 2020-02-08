@@ -6,9 +6,9 @@ import StatUpdateBlock from "../components/statUpdateBlock";
 
 class UserStats extends Component {
 	state = {
-		height: "",
-		heightCurrent: this.props.userData.height.height,
-		heightEdit: this.props.userData.height.height ? false : true,
+		weight: "",
+		weightCurrent: this.props.userData.weight.weight,
+		weightEdit: this.props.userData.weight.weight ? false : true,
 		backSquat: "",
 		backSquatCurrent: this.props.userData.backSquat.backSquat,
 		backSquatEdit: this.props.userData.backSquat.backSquat ? false : true,
@@ -105,15 +105,15 @@ class UserStats extends Component {
 				<form>
 
 				<StatUpdateBlock
-					name = "height"
+					name = "weight"
 					type = "number"
 					change = {this.handleInputChange}
-					state = {this.state.height}
+					state = {this.state.weight}
 					edit = {this.editMode}
-					currentState = {this.state.heightCurrent}
-					editState = {this.state.heightEdit}
+					currentState = {this.state.weightCurrent}
+					editState = {this.state.weightEdit}
 				>
-					Height
+					Weight (lb)
 				</StatUpdateBlock>
 
 				<StatUpdateBlock
@@ -233,7 +233,7 @@ class UserStats extends Component {
 					currentState = {this.state.fiveKCurrent}
 					editState = {this.state.fiveKEdit}
 				>
-					Five K
+					5K
 				</StatUpdateBlock>
 
 				<StatUpdateBlock
@@ -245,7 +245,7 @@ class UserStats extends Component {
 					currentState = {this.state.fourHundredMeterCurrent}
 					editState = {this.state.fourHundredMeterEdit}
 				>
-					Four Hundred Meter
+					400 Meter
 				</StatUpdateBlock>
 
 					<button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>

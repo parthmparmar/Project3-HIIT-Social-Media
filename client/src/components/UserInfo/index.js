@@ -1,6 +1,33 @@
-import React from "react";
+import React, {useState, useRef} from "react";
+import TextInput from "../TextInput";
+import API from "../../utils/API";
 
 function UserInfo(props) {
+    const [status, setStatus] = useState("");
+    const [statusEdit, setStatusEdit] = useState(false);
+
+    const statusInput = useRef("");
+
+    function clickStatusUpdate(){
+        setStatusEdit(false)
+        let filteredDataArray = [
+            {status: statusInput.current.value}
+        ]; 
+        if (filteredDataArray) {
+            API.updateStats({
+                userId: props.userData._id,
+                filteredDataArray
+            })
+                .then(res => {
+                    console.log(res.data);
+                    props.assignUser(res.data);
+                })
+                .catch(err => console.log(err));
+            }
+        else {
+            console.log("New status not added")
+        }
+        }
 
     return (
         <div>
@@ -12,7 +39,18 @@ function UserInfo(props) {
                     <div className="col-md-8">
                         <div className="card-body">
                             <h5 className="card-title">{firstLetterCap(props.userData.firstName)} {firstLetterCap(props.userData.lastName)}</h5>
-                            <p className="card-text">{props.userData.status ? props.userData.status : "No Status"}</p>
+                            <p className="card-text">{props.userData.status.status ? props.userData.status.status : "No Status"}</p>
+                            {statusEdit || <button className="btn btn-primary" onClick={()=>setStatusEdit(true)}>Edit</button>}
+                            {statusEdit &&
+                                <TextInput
+                                    id="status-input"
+                                    name="status"
+                                    click={() => clickStatusUpdate()}
+                                    refInput={statusInput}
+                                >   
+                                    New Status
+                                </TextInput>
+                            }
                         </div>
                     </div>
                 </div>
@@ -32,5 +70,8 @@ function UserInfo(props) {
 function firstLetterCap(str){
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+
+
 
 export default UserInfo;
