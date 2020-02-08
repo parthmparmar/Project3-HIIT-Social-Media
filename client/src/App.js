@@ -6,7 +6,6 @@ import Landing from "./pages/Landing";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import UserRegister from "./pages/UserRegister";
-// import PrivateRoute from "./components/PrivateRoute";
 
 class App extends Component {
 	state = {

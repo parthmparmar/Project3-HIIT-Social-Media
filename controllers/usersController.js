@@ -3,10 +3,12 @@ const db = require("../models");
 module.exports = {
 	// Find user and authenticate
 	findUser: function(req, res) {
+		console.log(req.body); 
 		//checks that email is present or not
 		db.User.findOne({"email": req.body.email}, (err, user) =>{
 			if(!user) res.json({message: "Login failed, user not found"})
-
+			console.log(user)
+			
 			// If email is found then it will compare password
 			user.comparePassword(req.body.password, (err, isMatch)=>{
 				if(err) throw err;
@@ -54,7 +56,7 @@ module.exports = {
 	},
 
 	// Save new user to DB 
-	create: function(req, res) {
+	 create:function(req, res) {
 		const user = new db.User({
 			email: req.body.email,
 			password: req.body.password
