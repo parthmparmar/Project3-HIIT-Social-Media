@@ -13,4 +13,8 @@ router
 	.route("/update")
 	.post(usersController.updateUser);
 
+router
+	.route("/stats/update")
+	.post(usersController.updateStats);
+
 module.exports = router;

@@ -4,7 +4,7 @@ import Row from "../components/Row";
 // import MembersCard from "../components/MembersCard";
 import UserInfo from "../components/UserInfo";
 import WodCard from "../components/wodCard";
-import UserStats from "../components/StatsCard";
+import UserStatsCard from "../components/StatsCard";
 
 function Dashboard(props) {
 		return (
@@ -14,7 +14,7 @@ function Dashboard(props) {
           <WodCard />
         </Row>
         <Row>
-        <UserStats userData= {props.userData}/>
+        {/* <UserStatsCard userData= {props.userData}/> */}
         </Row>
       </Wrapper>
 		);

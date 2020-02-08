@@ -167,25 +167,20 @@ UserSchema.methods.filterUserData = function() {
 		gender: this.gender,
 		box: this.box,
 		status: this.status,
-		height: this.height[0],
-		weight: this.weight[0],
-		backsquat: this.backsquat,
-        cleanJerk: this.leanJerk,
-        snatch: this.snatch,
-        deadlift: this.deadlift,
-        overHeadPress: this.overHeadPress,
-        maxPullUps: this.maxPullUps,
-        fran: this.fran,
-        grace: this.grace,
-        hellen: this.hellen,
-        fiveK: this.fiveK,
-        fourHundredMeter: this.fourHundredMeter,
+		height: this.height[0] || [],
+		weight: this.weight[0]|| [],
+		backSquat: this.backSquat[0] || {backSquat: ""},
+        cleanJerk: this.cleanJerk[0] || {cleanJerk: ""},
+        snatch: this.snatch[0] || {snatch: ""},
+        deadlift: this.deadlift[0] || {deadlift: ""},
+        overHeadPress: this.overHeadPress[0] || {overHeadPress: ""},
+        maxPullUps: this.maxPullUps[0] || {maxPullUps: ""},
+        fran: this.fran[0] || {fran: ""},
+        grace: this.grace[0] || {grace: ""},
+        hellen: this.hellen[0] || {hellen: ""},
+        fiveK: this.fiveK[0] || {fiveK: ""},
+        fourHundredMeter: this.fourHundredMeter[0] || {fourHundredMeter: ""},
 	}
-}
-
-UserSchema.methods.prependData = function(item, obj) {
-	array = this[item]
-	array.unshift(obj);
 }
 
 const User = mongoose.model("User", UserSchema);

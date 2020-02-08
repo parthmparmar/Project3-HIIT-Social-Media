@@ -5,7 +5,12 @@ module.exports = {
 	findUser: function(req, res) {
 		//checks that email is present or not
 		db.User.findOne({"email": req.body.email}, (err, user) =>{
-			if(!user) res.json({message: "Login failed, user not found"})
+			// console.log(user)
+			if(!user) {
+				res.json({message: "Login failed, user not found"})
+				return
+			}
+			
 
 			// If email is found then it will compare password
 			user.comparePassword(req.body.password, (err, isMatch)=>{
@@ -16,6 +21,7 @@ module.exports = {
 
 				userData = user.filterUserData();
 				userData.age = user.calculateAge();
+				// console.log(userData)
 				res.status(200).send(userData);
 			});
 		});
@@ -52,6 +58,11 @@ module.exports = {
 		});
 
 	},
+
+	updateStats: function(req, res){
+		console.log(req.body.filteredDataArray);
+	},
+
 
 	// Save new user to DB 
 	create: function(req, res) {

@@ -30,7 +30,7 @@ function UserStats(props) {
               </tr>
               <tr>
                 <td>Back Squat</td>
-                <td>{props.userData.backsquat}</td>
+                <td>{props.userData.backSquat}</td>
               </tr>
               <tr>
                 <td>Snatch</td>
