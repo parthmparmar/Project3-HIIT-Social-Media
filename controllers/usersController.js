@@ -72,7 +72,7 @@ module.exports = {
 			objAdd.date = new Date();
 			statUpdateObj[name[0]] = {$each: [objAdd], $position:0}
 		});
-		console.log(statUpdateObj);
+		// console.log(statUpdateObj);
 		const userId = req.body.userId;
 
 		db.User.findByIdAndUpdate(userId, {$push: statUpdateObj}, {new: true}, function(err, dbUser){

@@ -46,7 +46,7 @@ class App extends Component {
 						<Route exact path="/register" render={props => <Register />} />
 						{/* User Profile/Dashboard Route */}
 						<PrivateRoute exact path="/dashboard" isAuthed={this.state.isAuthenticated}>
-							<Dashboard userData={this.state.userData} />
+							<Dashboard userData={this.state.userData} assignUser={this.assignUser}/>
 						</PrivateRoute>
 						{/* Secondary User Registration Route */}
 						<PrivateRoute exact path="/userRegister" isAuthed={this.state.isAuthenticated}>

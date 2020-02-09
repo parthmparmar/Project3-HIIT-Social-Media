@@ -14,7 +14,7 @@ function Dashboard(props) {
           <Col size="12 lg-7">
             <Row>
               <Col size="12">
-                <UserInfo userData= {props.userData}/>
+                <UserInfo userData= {props.userData} assignUser = {props.assignUser}/>
               </Col>
               <Col size="12">
                 <UserStatsCard userData= {props.userData}/>
