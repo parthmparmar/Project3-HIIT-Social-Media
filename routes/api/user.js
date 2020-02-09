@@ -17,4 +17,8 @@ router
 	.route("/stats/update")
 	.post(usersController.updateStats);
 
+router
+	.route("/members/all")
+	.get(usersController.getAllMembers);
+
 module.exports = router;

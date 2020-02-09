@@ -54,6 +54,13 @@ function NavBar(props) {
 							</Link>
 						</li>
 					) : null}
+					{props.isAuthed ? (
+						<li className="nav-item" >
+							<Link to="/Members" className="nav-link btn btn-outline-light ml-0 ml-lg-4 mt-lg-1" id="signupButton">
+								Members
+							</Link>
+						</li>
+					) : null}
 				</ul>
 			</div>
 		</nav>

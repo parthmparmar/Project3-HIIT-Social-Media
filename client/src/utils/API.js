@@ -18,5 +18,9 @@ export default {
 
 	updateStats: function(userData) {
 		return axios.post("/api/user/stats/update", userData);
+	},
+
+	getAllMembers: function(){
+		return axios.get("/api/user/members/all")
 	}
 };
