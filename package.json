@@ -20,6 +20,7 @@
   "license": "ISC",
   "homepage": "https://github.com/parthmparmar/Project3-HIIT-Social-Media#readme",
   "dependencies": {
+    "avataaars": "^1.2.1",
     "axios": "^0.19.2",
     "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
