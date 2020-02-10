@@ -72,7 +72,7 @@ module.exports = {
 			objAdd.date = new Date();
 			statUpdateObj[name[0]] = {$each: [objAdd], $position:0}
 		});
-		console.log(statUpdateObj);
+		// console.log(statUpdateObj);
 		const userId = req.body.userId;
 
 		db.User.findByIdAndUpdate(userId, {$push: statUpdateObj}, {new: true}, function(err, dbUser){
@@ -84,9 +84,24 @@ module.exports = {
 			userFilteredData.age = dbUser.calculateAge();
 			res.status(200).send(userFilteredData);
 		});
-
-	
 	},
+
+	getAllMembers: function(req, res){
+		let membersFilteredArray = [];
+		db.User.find({}, function(err, dbMembers){
+			if (err){
+				res.status(500).send({message:"Error in finding members"});
+				return;
+			};
+			dbMembers.forEach(element => {
+				filteredMember = element.filterUserData();
+				filteredMember.age = element.calculateAge();
+				membersFilteredArray.push(filteredMember);
+			});
+			res.status(200).send(membersFilteredArray);
+		})
+	},
+
 
 
 	// Save new user to DB 

@@ -29,9 +29,12 @@ const UserSchema = new Schema({
 	box: {
 		type: String
 	},
-	status: {
-		type: String
-	},
+	status: [
+		{
+			status: String,
+			date: Date
+		}
+	],
 	myBox: [
 		{type: Schema.Types.ObjectId,
 		ref: "User"
@@ -166,7 +169,7 @@ UserSchema.methods.filterUserData = function() {
 		lastName: this.lastName,
 		gender: this.gender,
 		box: this.box,
-		status: this.status,
+		status: this.status[0] || {statu: ""},
 		height: this.height[0] || {height: ""},
 		weight: this.weight[0]|| {weight: ""},
 		backSquat: this.backSquat[0] || {backSquat: ""},

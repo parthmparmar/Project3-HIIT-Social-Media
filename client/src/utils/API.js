@@ -22,5 +22,9 @@ export default {
 	
 	findWods:function(wodData) {
 		return axios.get("/api/user/wods", wodData);
+	},
+
+	getAllMembers: function() {
+		return axios.get("/api/user/members/all")
 	}
 };
