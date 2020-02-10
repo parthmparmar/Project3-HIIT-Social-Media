@@ -13,7 +13,7 @@ import Login from "./pages/Login";
 class App extends Component {
 	state = {
 		isAuthenticated: false,
-		userData: {}
+		userData: {},
 	};
 
 	handleLogout = _ => {
@@ -46,7 +46,7 @@ class App extends Component {
 						<Route exact path="/register" render={props => <Register />} />
 						{/* User Profile/Dashboard Route */}
 						<PrivateRoute exact path="/dashboard" isAuthed={this.state.isAuthenticated}>
-							<Dashboard userData={this.state.userData} />
+							<Dashboard userData={this.state.userData} wodData={this.state.wodData} />
 						</PrivateRoute>
 						{/* Secondary User Registration Route */}
 						<PrivateRoute exact path="/userRegister" isAuthed={this.state.isAuthenticated}>

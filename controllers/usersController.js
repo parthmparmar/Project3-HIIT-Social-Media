@@ -98,5 +98,11 @@ module.exports = {
 			if (err) res.status(400).send(err);
 			res.status(200).send(response);
 		});
+	},
+
+	findWods:function (req, res) {
+			db.Wod.find()
+			.then(dbModel => res.json(dbModel))
+			.catch(err => res.status(422).json(err));
 	}
  };

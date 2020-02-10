@@ -22,7 +22,7 @@ function Dashboard(props) {
             </Row>
           </Col>
           <Col size="12 lg-5">
-            <WodCard />
+            <WodCard WodData= {props.wodData} />
           </Col>
         </Row>
       </Wrapper>

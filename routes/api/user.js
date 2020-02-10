@@ -17,4 +17,8 @@ router
 	.route("/stats/update")
 	.post(usersController.updateStats);
 
+router
+	.route("/wods")
+	.get(usersController.findWods);
+
 module.exports = router;
