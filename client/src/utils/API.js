@@ -19,8 +19,12 @@ export default {
 	updateStats: function(userData) {
 		return axios.post("/api/user/stats/update", userData);
 	},
+	
+	findWods:function(wodData) {
+		return axios.get("/api/user/wods", wodData);
+	},
 
-	getAllMembers: function(){
+	getAllMembers: function() {
 		return axios.get("/api/user/members/all")
 	}
 };

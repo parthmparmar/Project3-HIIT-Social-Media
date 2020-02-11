@@ -18,6 +18,10 @@ router
 	.post(usersController.updateStats);
 
 router
+	.route("/wods")
+	.get(usersController.findWods);
+	
+router
 	.route("/members/all")
 	.get(usersController.getAllMembers);
 
