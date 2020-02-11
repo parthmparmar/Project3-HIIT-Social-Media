@@ -1,20 +1,65 @@
-import React from "react";
+import React, { Component } from "react";
+import API from "../../utils/API";
 
-function WodCard(props) {
+class WodCard extends Component {
 
+  state = {
+    wods: [],
+    wod: "",
+    title: ""
+  }
+
+  componentDidMount() {
+    this.loadWods();
+  }
+
+  generateWod () {
+    let wods = this.state.wods
+    let newState = { ...this.state };
+    let randomWod = wods[Math.floor(Math.random() * wods.length)]
+    newState.title = randomWod.title;
+    newState.wod = randomWod.wod
+    this.setState(this.state = newState);
+  }
+
+  loadWods() {
+    API.findWods({}).then(res => {
+      this.setState(
+          {
+              wods: res.data
+          }
+      )
+      console.log()
+      console.log(this.state.wods)
+      console.log(this.state.wods[0].title)
+       let newState = {...this.state}
+      let randomWod = this.state.wods[Math.floor(Math.random() * this.state.wods.length)]
+      console.log(randomWod)
+      newState.title = randomWod.title;
+      newState.wod = randomWod.wod
+      this.setState(newState)
+  });
+
+  }
+  
+  render() 
+  {   
     return (
 			<div className="card shadow">
 				<img src="https://www.crossfit.com/wp-content/uploads/2020/02/29154215/Deficit-HSPU-Hobart-768x432.png" className="card-img-top" alt="..." />
 				<div className="card-body">
 					<h5 className="card-title">Random Wod!</h5>
-					<h5 className="card-title">{props.title}</h5>
-					<p className="card-text">{props.wod}</p>
-					<button type="button" className="btn btn-secondary">
+					<h5 className="card-title">{this.state.title}</h5>
+          {/* <h5 className="card-title">Test</h5> */}
+					<p className="card-text">{this.state.wod}</p>
+          {/* <p className="card-text">Test</p> */}
+          <button type="button" className="btn btn-secondary" onClick= {this.generateWod.bind(this)} >
 						Generate Random Wod
 					</button>
 				</div>
 			</div>
-		);
+    );
+}
 }
 
 export default WodCard;

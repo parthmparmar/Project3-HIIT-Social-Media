@@ -15,7 +15,7 @@ import Login from "./pages/Login";
 class App extends Component {
 	state = {
 		isAuthenticated: false,
-		userData: {}
+		userData: {},
 	};
 
 	handleLogout = _ => {

@@ -142,5 +142,11 @@ module.exports = {
 					message: "Logged out"
 				});
 		});
+	},
+
+	findWods:function (req, res) {
+			db.Wod.find()
+			.then(dbModel => res.json(dbModel))
+			.catch(err => res.status(422).json(err));
 	}
 };
