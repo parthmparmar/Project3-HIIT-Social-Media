@@ -25,6 +25,7 @@ class Landing extends Component {
 				password: this.state.password
 			})
 				.then(res => {
+					
 					this.props.isAuthed();
 					this.props.assignUser(res.data);
 					if (res.data.firstName) {

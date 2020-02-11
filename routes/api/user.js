@@ -10,6 +10,10 @@ router
 	.post(usersController.findUser);
 
 router
+	.route("/logout")
+	.post(usersController.logoutUser);
+
+router
 	.route("/update")
 	.post(usersController.updateUser);
 
