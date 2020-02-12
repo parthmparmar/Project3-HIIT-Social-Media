@@ -37,18 +37,6 @@ class Members extends Component {
                         return <MembersCard userData={userData}/>
                     })}
                 </Row>
-                <Row>
-                <Avatar
-                    avatarStyle='Transparent'
-                    topType='ShortHairShortWaved'
-                    hairColor='Black'
-                    facialHairType='BeardLight'
-                    facialHairColor='Black'
-                    clotheType='Hoodie'
-                    clotheColor='Gray02'
-                    skinColor='Brown'
-                />
-                </Row>
 
             </div>
 

@@ -1,6 +1,7 @@
 import React, {useState, useRef} from "react";
 import TextInput from "../TextInput";
 import API from "../../utils/API";
+import Avatar from 'avataaars';
 
 function UserInfo(props) {
     const [status, setStatus] = useState("");
@@ -34,7 +35,16 @@ function UserInfo(props) {
             <div id="user-info-card" className="card shadow mb-3">
                 <div className="row no-gutters">
                     <div className="col-md-4">
-                        <img src="/assets/avatar/avataaars.png" className="card-img" alt="avatar" />
+                        <Avatar
+                             avatarStyle='Transparent'
+                             topType={props.userData.avatar.topType || ""}
+                             hairColor={props.userData.avatar.hairColor || ""}
+                             facialHairType={props.userData.avatar.facialHairType || ""}
+                             facialHairColor={props.userData.avatar.facialHairColor || ""}
+                             clotheType='Hoodie'
+                             clotheColor={props.userData.avatar.clotheColor || ""}
+                             skinColor={props.userData.avatar.skinColor || ""} 
+                        />
                     </div>
                     <div className="col-md-8">
                         <div className="card-body">

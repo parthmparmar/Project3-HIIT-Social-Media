@@ -21,4 +21,8 @@ router
 	.route("/members/all")
 	.get(usersController.getAllMembers);
 
+router
+	.route("/avatar")
+	.post(usersController.avatar)
+
 module.exports = router;

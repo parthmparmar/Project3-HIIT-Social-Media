@@ -6,9 +6,10 @@ function Select(props) {
 	return (
 		<div className="form-group">
 			<label htmlFor={props.id}>{props.children}:</label>
-			<select name = {props.itemName}class="form-control" onChange={props.change}>
+			<select name = {props.itemName}className="form-control" onChange={props.change}>
+				<option key="empty" value="">Select An Option</option>
                 {optionArray.map(option=>{
-                    return <option value={option}>{option}</option>
+                    return <option key={option} value={option}>{option}</option>
                 })}
             </select>
 		</div>

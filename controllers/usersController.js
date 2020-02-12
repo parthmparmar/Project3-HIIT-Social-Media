@@ -102,7 +102,20 @@ module.exports = {
 		})
 	},
 
+	avatar: function(req, res){
+		const userId = req.body.userId;
+		const avatarObj = req.body.avatar;
+		db.User.findByIdAndUpdate(userId, {avatar: avatarObj}, {new:true}, function(err, dbUser){
+			if (err){
+				res.status(500).send({message:"Error in finding members"});
+				return;
+			};
+			userFilteredData = dbUser.filterUserData();
+			userFilteredData.age = dbUser.calculateAge();
+			res.status(200).send(userFilteredData);
+		});
 
+	},
 
 	// Save new user to DB 
 	 create:function(req, res) {
