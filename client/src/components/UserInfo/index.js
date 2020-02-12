@@ -9,6 +9,12 @@ function UserInfo(props) {
 
     const statusInput = useRef("");
 
+    function convertHeight(heightInches){
+        var feet = Math.floor(heightInches / 12);
+        var leftover = heightInches % 12;
+        return (feet + "' " + leftover + "\"")
+    }
+
     function clickStatusUpdate(){
         setStatusEdit(false)
         let filteredDataArray = [
@@ -67,7 +73,7 @@ function UserInfo(props) {
                 <ul className="list-group list-group-horizontal">
                 <li className="list-group-item">Division: {firstLetterCap(props.userData.gender)}</li>
                 <li className="list-group-item">Age: {props.userData.age}</li>
-                <li className="list-group-item">Height: {props.userData.height.height}</li>
+                <li className="list-group-item">Height: {convertHeight(props.userData.height.height)}</li>
                 <li className="list-group-item">Weight: {props.userData.weight.weight} LB</li>
                 <li className="list-group-item">Box: {props.userData.box}</li>
             </ul>
@@ -80,7 +86,6 @@ function UserInfo(props) {
 function firstLetterCap(str){
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
-
 
 
 

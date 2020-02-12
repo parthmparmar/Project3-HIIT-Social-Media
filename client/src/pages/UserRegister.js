@@ -39,7 +39,7 @@ class UserRegister extends Component {
 				birthday: this.state.birthday,
 				gender: this.state.gender.toLowerCase(),
 				box: this.state.box.toLowerCase(),
-				height: (this.state.feet * 12) + this.state.inches,
+				height: parseInt(this.state.feet * 12) + parseInt(this.state.inches),
 				weight: this.state.weight
 			})
 				.then(res => {
