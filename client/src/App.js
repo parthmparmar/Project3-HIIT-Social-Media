@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import UserRegister from "./pages/UserRegister";
 import UserStats from "./pages/userStats";
 import Members from "./pages/Members";
+import AvatarSetup from "./pages/Avatar";
 // import PrivateRoute from "./components/PrivateRoute";
 import Login from "./pages/Login";
 
@@ -58,6 +59,9 @@ class App extends Component {
 						</PrivateRoute>	
 						<PrivateRoute exact path="/Members" isAuthed={this.state.isAuthenticated}>
 							<Members assignUser = {this.assignUser} userData = {this.state.userData} />
+						</PrivateRoute>	
+						<PrivateRoute exact path="/Avatar" isAuthed={this.state.isAuthenticated}>
+							<AvatarSetup assignUser = {this.assignUser} userData = {this.state.userData} />
 						</PrivateRoute>	
 						{/* Catch all Route - 404 page */}
 						<Route path="*" component={() => <p> 404 Page not found </p>} />
