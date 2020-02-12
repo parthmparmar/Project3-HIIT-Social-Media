@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from 'react';
+// import { navigate } from '@reach/router';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
 import NavBar from "./components/NavBar";
@@ -12,61 +13,91 @@ import Members from "./pages/Members";
 import Login from "./pages/Login";
 
 
-class App extends Component {
-	state = {
-		isAuthenticated: false,
-		userData: {},
+export const UserContext = React.createContext();
+
+function App() {
+	const [userData, setUserData] = useState({});
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const [accessToken, setAccessToken] = useState("");
+
+	const logOutUser = async () => {
+		console.log("Loging out....");
+		await fetch("http://localhost:3000/api/user/logout", {
+			method: "POST",
+			credentials: "include" // Needed to include the cookie
+		});
+		// Clear user from context
+		setUserData({});
+		// Navigate back to startpage
+		return <Redirect to="/login" />
 	};
+	
+	// First thing, check if a refreshtoken exist
+  // useEffect(() => {
+  //   async function checkRefreshToken() {
+  //     const result = await (
+	// 			await fetch("http://localhost:3000/api/user/refresh_token", {
+	// 				method: "POST",
+	// 				credentials: "include", // Needed to include the cookie
+	// 				headers: {
+	// 					"Content-Type": "application/json"
+	// 				}
+	// 			})
+	// 		).json();
+  //       setAccessToken({
+  //         accesstoken: result.accesstoken,
+  //       });
+  //   }
+  //   // checkRefreshToken();
+  // }, []);
 
-	handleLogout = _ => {
-		this.setState({isAuthenticated: false});
-	}
+	// const handleLogout = _ => {
+	// 	setIsAuthenticated(false);
+	// }
 
-	assignUser = userData => {
-		this.setState({ userData: userData });
-	};
+	// const assignUser = userData => {
+	// 	setUserData(userData);
+	// };
 
-	isAuthenticated = () => {
-		this.setState({ isAuthenticated: true });
-	};
+	// const AuthenticateUser = () => {
+	// 	setIsAuthenticated(true);
+	// };
 
-	render() {
-		console.log("State from App Component: ", this.state);
+		console.log("State from App Component: ", userData);
 		return (
-			<Router>
-				<div>
-					<NavBar isAuthed={this.state.isAuthenticated} logout={this.handleLogout}/>
-					<Switch>
-						{/* Landing Page Route */}
-						<Route
-							exact
-							path="/"
-							render={props => <Landing isAuthed={this.isAuthenticated} assignUser={this.assignUser} userData={this.state.userData} />}
-						/>
-						{/* Initial User Signup Route */}
-						<Route exact path="/login" render={props => <Login isAuthed={this.isAuthenticated} assignUser={this.assignUser} />} />
-						<Route exact path="/register" render={props => <Register />} />
-						{/* User Profile/Dashboard Route */}
-						<PrivateRoute exact path="/dashboard" isAuthed={this.state.isAuthenticated}>
-							<Dashboard userData={this.state.userData} assignUser={this.assignUser}/>
-						</PrivateRoute>
-						{/* Secondary User Registration Route */}
-						<PrivateRoute exact path="/userRegister" isAuthed={this.state.isAuthenticated}>
-							<UserRegister assignUser = {this.assignUser} userData = {this.state.userData} />
-						</PrivateRoute>	
-						<PrivateRoute exact path="/userStats" isAuthed={this.state.isAuthenticated}>
-							<UserStats assignUser = {this.assignUser} userData = {this.state.userData} />
-						</PrivateRoute>	
-						<PrivateRoute exact path="/Members" isAuthed={this.state.isAuthenticated}>
-							<Members assignUser = {this.assignUser} userData = {this.state.userData} />
-						</PrivateRoute>	
-						{/* Catch all Route - 404 page */}
-						<Route path="*" component={() => <p> 404 Page not found </p>} />
-					</Switch>
-				</div>
-			</Router>
+			<UserContext.Provider value={{userInfo: [userData, setUserData], userAuth: [isAuthenticated, setIsAuthenticated]}}>
+				<Router>
+					
+							<NavBar logOutUser={logOutUser} />
+							<Switch>
+								{/* Landing Page Route */}
+								<Route exact path="/" render={props => <Landing />}
+								/>
+								{/* Initial User Signup Route */}
+								{/* <Route exact path="/login" render={props => <Login isAuthed={isAuthenticated} assignUser={assignUser} />} /> */}
+								{/* <Route exact path="/register" render={props => <Register />} /> */}
+								{/* User Profile/Dashboard Route */}
+								{/* <PrivateRoute exact path="/dashboard" isAuthed={isAuthenticated}>
+									<Dashboard userData={userData} assignUser={assignUser}/>
+								</PrivateRoute> */}
+								{/* Secondary User Registration Route */}
+								{/* <PrivateRoute exact path="/userRegister" isAuthed={isAuthenticated}>
+									<UserRegister assignUser = {assignUser} userData = {userData} />
+								</PrivateRoute>	 */}
+								{/* <PrivateRoute exact path="/userStats" isAuthed={isAuthenticated}>
+									<UserStats assignUser = {assignUser} userData = {userData} />
+								</PrivateRoute>	 */}
+								{/* <PrivateRoute exact path="/Members" isAuthed={isAuthenticated}>
+									<Members assignUser = {assignUser} userData = {userData} />
+								</PrivateRoute>	 */}
+								{/* Catch all Route - 404 page */}
+								<Route path="*" component={() => <p> 404 Page not found </p>} />
+							</Switch>
+					
+					
+				</Router>
+			</UserContext.Provider>
 		);
-	}
 }
 
 // If state.isAuthenticated is true

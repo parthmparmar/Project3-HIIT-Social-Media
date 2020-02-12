@@ -1,53 +1,49 @@
-import React, { Component } from "react";
+import React, {useState, useContext} from "react";
 import API from "../utils/API";
 import { Redirect, Link } from "react-router-dom";
 import "./styles/landing.css";
+import { UserContext } from  "../App";
 
-class Landing extends Component {
-	state = {
-		email: "",
-		password: "",
-		redirect: null
-	};
-
-	handleInputChange = event => {
-		const { name, value } = event.target;
-		this.setState({
-			[name]: value
-		});
-	};
-
-	handleFormSubmit = event => {
+function Landing() {
+	// Get Data from Context API
+	const {userInfo, userAuth} = useContext(UserContext);
+	const [userData, setUserData] = userInfo;
+	const [isAuthenticated, setIsAuthenticated] = userAuth;
+	// Create State
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [redirect, setRedirect] = useState(null);
+	// Handle Submit Form
+	const handleFormSubmit = event => {
 		event.preventDefault();
-		if (this.state.email && this.state.password) {
+		if (email && password) {
 			API.getUser({
-				email: this.state.email,
-				password: this.state.password
+				email: email,
+				password: password
 			})
 				.then(res => {
-					this.props.isAuthed();
-					this.props.assignUser(res.data);
+					setIsAuthenticated(true);
+					setUserData(res.data);
 					if (res.data.firstName) {
-						this.setState({ redirect: "/dashboard" });
+						setRedirect("/dashboard");
 					} else {
-						this.setState({ redirect: "/userRegister" });
+						setRedirect("/userRegister");
 					}
 				})
 				.catch(err => console.log(err));
 		}
 	};
-
-	render() {
-		if (this.state.redirect) {
-			return <Redirect to={this.state.redirect} />;
-		}
+		// If user is authenticated redirect to dashboard
+		// if (redirect) {
+		// 	return <Redirect to={redirect} />;
+		// }
 
 		return (
 			<main id="landing-page">
 				<div className="row">
 					<div className="col-12 col-lg-6 col-xl-7">
 						<div className="jumbotron bg-transparent">
-							<div className="container text-left mt-3 mt-md-5 ml-md-5">
+							<div className="container text-left mt-3 mt-md-1 ml-md-5">
 								<h1 className="tittle">Build for Crossfitters</h1>
 								<p className="lead">
 									“There is no single sport or activity that trains for perfect fitness. True fitness requires a compromise in adaptation broader than
@@ -55,7 +51,7 @@ class Landing extends Component {
 								</p>
 							</div>
 						</div>
-						<div id="crossfitters-image" className="container mt-0">
+						<div id="crossfitters-image" className="container">
 							<img src="/assets/images/crossfitters.png" className="img-fluid" alt="Crossfitters" />
 						</div>
 					</div>
@@ -71,8 +67,8 @@ class Landing extends Component {
 									<label htmlFor="email">Email Address</label>
 									<input
 										className="form-control"
-										onChange={this.handleInputChange}
-										value={this.state.email}
+										onChange={e => setEmail(e.target.value)}
+										value={email}
 										name="email"
 										id="email"
 										type="email"
@@ -83,15 +79,15 @@ class Landing extends Component {
 									<label htmlFor="password">Password</label>
 									<input
 										className="form-control"
-										onChange={this.handleInputChange}
-										value={this.state.password}
+										onChange={e => setPassword(e.target.value)}
+										value={password}
 										name="password"
 										id="password"
 										type="password"
 										placeholder="●●●●●●●●●●●●"
 									/>
 								</div>
-								<button type="submit" onClick={this.handleFormSubmit}>
+								<button type="submit" onClick={handleFormSubmit}>
 									Sign in
 								</button>
 							</form>
@@ -106,7 +102,6 @@ class Landing extends Component {
 				</div>
 			</main>
 		);
-	}
 }
 
 export default Landing;

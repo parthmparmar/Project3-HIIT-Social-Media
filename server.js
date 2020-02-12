@@ -25,6 +25,25 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/wodbook", {
 	useCreateIndex: true
 });
 
+
+// TEST PROTECT ROUTE
+const isAuth = require("./auth/isAuth");
+
+app.post('/protected', async (req, res) => {
+  try {
+    const userId = isAuth(req);
+    if (userId !== null) {
+      res.send({
+        data: 'This is protected data.',
+      });
+    }
+  } catch (err) {
+    res.send({
+      error: `${err.message}`,
+    });
+  }
+});
+
 // Add routes
 app.use(routes);
 

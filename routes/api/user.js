@@ -13,6 +13,10 @@ router
 	.route("/logout")
 	.post(usersController.logoutUser);
 
+	router
+	.route("/refresh_token")
+	.post(usersController.getNewToken);
+
 router
 	.route("/update")
 	.post(usersController.updateUser);

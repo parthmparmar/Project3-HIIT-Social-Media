@@ -1,4 +1,5 @@
 const db = require("../models");
+const { verify } = require("jsonwebtoken");
 const { createAccessToken, createRefreshToken, sendRefreshToken, sendAccessToken } = require("../auth/tokens");
 
 module.exports = {
@@ -128,6 +129,7 @@ module.exports = {
 		});
 	},
 
+	// Logout user
 	logoutUser: function(req, res) {
 		// Clear cookie
 		res.clearCookie("refreshtoken", { path: "/refresh_token" });
@@ -138,15 +140,53 @@ module.exports = {
 				res.status(500).send({ message: "Error in updating user data" });
 				return;
 			}
-				return res.send({
-					message: "Logged out"
-				});
+			return res.send({
+				message: "Logged out"
+			});
 		});
 	},
 
-	findWods:function (req, res) {
-			db.Wod.find()
+	// Request all WOD from DB
+	findWods: function(req, res) {
+		db.Wod.find()
 			.then(dbModel => res.json(dbModel))
 			.catch(err => res.status(422).json(err));
+	},
+
+	// Get a new access token with a refresh token
+	getNewToken: (req, res) => {
+		const token = req.cookies.refreshtoken;
+		console.log("TOKEN: ", token);
+		// If we don't have a token in our request
+		if (!token) return res.send({ accesstoken: "" });
+		// We have a token, let's verify it!
+		let payload = null;
+		try {
+			payload = verify(token, process.env.REFRESH_TOKEN);
+		} catch (err) {
+			return res.send({ accesstoken: "" });
+		}
+		console.log(payload.userId);
+		// token is valid, check if user exist
+		// const user = db.User.find(user => user.id === payload.userId);
+
+		db.User.findById(payload.userId, function(err, user) {
+			if (err) {
+				return res.send({ accesstoken: "" });
+			}
+			// user exist, check if token exist on user
+			if (user.token !== token) return res.send({ accesstoken: "" });
+			// token exist, create new Refresh- and accesstoken
+			const accesstoken = createAccessToken(user._id);
+			const refreshtoken = createRefreshToken(user._id);
+			// update refreshtoken on user in db
+			// Could have different versions instead!
+			user.token = refreshtoken;
+			user.save((err, user) => {
+				if (err) res.status(400).send(err);
+				sendRefreshToken(res, refreshtoken);
+				return res.send({ accesstoken });
+			});
+		});
 	}
 };
