@@ -26,5 +26,10 @@ export default {
 
 	getAllMembers: function() {
 		return axios.get("/api/user/members/all")
+	},
+
+	addAvatar: function(userData){
+		return axios.post("/api/user/avatar", userData)
 	}
+
 };

@@ -1,12 +1,19 @@
 import React, {useState, useRef} from "react";
 import TextInput from "../TextInput";
 import API from "../../utils/API";
+import Avatar from 'avataaars';
 
 function UserInfo(props) {
     const [status, setStatus] = useState("");
     const [statusEdit, setStatusEdit] = useState(false);
 
     const statusInput = useRef("");
+
+    function convertHeight(heightInches){
+        var feet = Math.floor(heightInches / 12);
+        var leftover = heightInches % 12;
+        return (feet + "' " + leftover + "\"")
+    }
 
     function clickStatusUpdate(){
         setStatusEdit(false)
@@ -34,7 +41,16 @@ function UserInfo(props) {
             <div id="user-info-card" className="card shadow mb-3">
                 <div className="row no-gutters">
                     <div className="col-md-4">
-                        <img src="/assets/avatar/avataaars.png" className="card-img" alt="avatar" />
+                        <Avatar
+                             avatarStyle='Transparent'
+                             topType={props.userData.avatar.topType || ""}
+                             hairColor={props.userData.avatar.hairColor || ""}
+                             facialHairType={props.userData.avatar.facialHairType || ""}
+                             facialHairColor={props.userData.avatar.facialHairColor || ""}
+                             clotheType='Hoodie'
+                             clotheColor={props.userData.avatar.clotheColor || ""}
+                             skinColor={props.userData.avatar.skinColor || ""} 
+                        />
                     </div>
                     <div className="col-md-8">
                         <div className="card-body">
@@ -57,7 +73,7 @@ function UserInfo(props) {
                 <ul className="list-group list-group-horizontal">
                 <li className="list-group-item">Division: {firstLetterCap(props.userData.gender)}</li>
                 <li className="list-group-item">Age: {props.userData.age}</li>
-                <li className="list-group-item">Height: {props.userData.height.height}</li>
+                <li className="list-group-item">Height: {convertHeight(props.userData.height.height)}</li>
                 <li className="list-group-item">Weight: {props.userData.weight.weight} LB</li>
                 <li className="list-group-item">Box: {props.userData.box}</li>
             </ul>
@@ -70,7 +86,6 @@ function UserInfo(props) {
 function firstLetterCap(str){
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
-
 
 
 
