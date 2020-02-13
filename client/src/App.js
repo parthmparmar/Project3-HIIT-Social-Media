@@ -67,7 +67,7 @@ function App() {
 					<PrivateRoute exact path="/Members" isAuthed={isAuthenticated}>
 						<Members assignUser={setUserData} userData={userData} />
 					</PrivateRoute>
-					<Route exact path="/" render={() => (isAuthenticated ? <Redirect to={Cookies.get("location") || "/"} /> : <Landing />)} />
+					<Route exact path="/" component={Landing} />
 					<Route path="*" component={() => <p> 404 Page not found </p>} /> {/* Catch all Route - 404 page */}
 				</Switch>
 			</Router>

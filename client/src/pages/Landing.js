@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import API from "../utils/API";
 import { Redirect, Link } from "react-router-dom";
 import "./styles/landing.css";
@@ -37,6 +37,13 @@ function Landing() {
 				.catch(err => console.log(err));
 		}
 	};
+
+	useEffect(()=>{
+		if (isAuthenticated) {
+			setRedirect(Cookies.get("location") || "/dashboard");
+		}
+	});
+
 	// If user is authenticated redirect to dashboard
 	if (redirect) {
 		return <Redirect to={redirect} />;
