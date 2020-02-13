@@ -39,7 +39,7 @@ function Landing() {
 	};
 
 	useEffect(()=>{
-		if (isAuthenticated) {
+		if (isAuthenticated && userData.firstName) {
 			setRedirect(Cookies.get("location") || "/dashboard");
 		}
 	});
