@@ -1,6 +1,5 @@
 const db = require("../models");
-const { verify } = require("jsonwebtoken");
-const { createAccessToken, createRefreshToken, sendRefreshToken, sendAccessToken } = require("../auth/tokens");
+const { createAccessToken, sendAccessToken } = require("../auth/tokens");
 const isAuth = require("../auth/isAuth");
 
 module.exports = {
@@ -113,8 +112,23 @@ module.exports = {
 		});
 	},
 
-	// Save new user to DB
-	create: function(req, res) {
+	avatar: function(req, res){
+		const userId = req.body.userId;
+		const avatarObj = req.body.avatar;
+		db.User.findByIdAndUpdate(userId, {avatar: avatarObj}, {new:true}, function(err, dbUser){
+			if (err){
+				res.status(500).send({message:"Error in finding members"});
+				return;
+			};
+			userFilteredData = dbUser.filterUserData();
+			userFilteredData.age = dbUser.calculateAge();
+			res.status(200).send(userFilteredData);
+		});
+
+	},
+
+	// Save new user to DB 
+	 create:function(req, res) {
 		const user = new db.User({
 			email: req.body.email,
 			password: req.body.password

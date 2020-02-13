@@ -5,6 +5,7 @@ import "./styles/landing.css";
 import Row from "../components/Row"
 import { set } from "mongoose";
 import MembersCard from "../components/MembersCard";
+import Avatar from 'avataaars'
 
 
 class Members extends Component {
@@ -29,8 +30,8 @@ class Members extends Component {
         require("js-cookie").set("location", "/Members");
 		if (this.state.redirect) {
 			return <Redirect to={this.state.redirect} />;
-		}
-
+        }
+        
 		return (
             <div className="members-page">
 

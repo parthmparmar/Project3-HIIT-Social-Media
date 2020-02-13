@@ -22,7 +22,7 @@ class Landing extends Component {
 		event.preventDefault();
 		if (this.state.email && this.state.password) {
 			API.getUser({
-				email: this.state.email,
+				email: this.state.email.toLowerCase(),
 				password: this.state.password
 			})
 				.then(res => {

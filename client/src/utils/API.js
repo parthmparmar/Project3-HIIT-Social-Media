@@ -34,5 +34,10 @@ export default {
 
 	logOutUser: function(userId) {
 		return axios.post("/api/user/logout", {userId: userId});
+	},
+
+	addAvatar: function(userData){
+		return axios.post("/api/user/avatar", userData)
 	}
+
 };

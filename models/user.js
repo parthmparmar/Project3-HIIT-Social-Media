@@ -38,6 +38,16 @@ const UserSchema = new Schema({
 			date: Date
 		}
 	],
+
+	avatar: {
+		topType: { type: String },
+		hairColor: { type: String },
+		facialHairType: { type: String },
+		facialHairColor: { type: String },
+		clotheColor: { type: String },
+		skinColor: { type: String }
+	},
+
 	myBox: [{ type: Schema.Types.ObjectId, ref: "User" }],
 	height: [
 		{
@@ -169,6 +179,7 @@ UserSchema.methods.filterUserData = function() {
 		gender: this.gender,
 		box: this.box,
 		status: this.status[0] || { statu: "" },
+		avatar: this.avatar,
 		height: this.height[0] || { height: "" },
 		weight: this.weight[0] || { weight: "" },
 		backSquat: this.backSquat[0] || { backSquat: "" },

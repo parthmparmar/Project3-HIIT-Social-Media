@@ -1,7 +1,6 @@
 import React from "react";
 
 function MembersCard(props) {
-
     return (
         <div>
             <div className="card bg-dark text-white col-md-4">

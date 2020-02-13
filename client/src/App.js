@@ -9,6 +9,8 @@ import Dashboard from "./pages/Dashboard";
 import UserRegister from "./pages/UserRegister";
 import UserStats from "./pages/userStats";
 import Members from "./pages/Members";
+import AvatarSetup from "./pages/Avatar";
+// import PrivateRoute from "./components/PrivateRoute";
 import Login from "./pages/Login";
 
 const Cookies = require("js-cookie");
@@ -67,6 +69,9 @@ function App() {
 					<PrivateRoute exact path="/Members" isAuthed={isAuthenticated}>
 						<Members assignUser={setUserData} userData={userData} />
 					</PrivateRoute>
+						<PrivateRoute exact path="/Avatar" isAuthed={isAuthenticated}>
+							<AvatarSetup assignUser = {setUserData} userData = {userData} />
+						</PrivateRoute>	
 					<Route exact path="/" component={Landing} />
 					<Route path="*" component={() => <p> 404 Page not found </p>} /> {/* Catch all Route - 404 page */}
 				</Switch>

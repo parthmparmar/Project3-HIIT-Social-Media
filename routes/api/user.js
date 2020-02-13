@@ -24,7 +24,7 @@ router
 router
 	.route("/wods")
 	.get(usersController.findWods);
-	
+
 router
 	.route("/members/all")
 	.get(usersController.getAllMembers);
@@ -32,5 +32,9 @@ router
 router
 	.route("/token")
 	.post(usersController.checkToken);
+
+router
+	.route("/avatar")
+	.post(usersController.avatar)
 
 module.exports = router;

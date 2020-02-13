@@ -64,6 +64,13 @@ function NavBar(props) {
 							</Link>
 						</li>
 					) : null}
+					{isAuthenticated? (
+						<li className="nav-item">
+							<Link to="/Avatar" className="nav-link btn btn-outline-light ml-0 ml-lg-4 mt-lg-1" id="signupButton">
+								Avatar
+							</Link>
+						</li>
+					) : null}
 					{isAuthenticated ? (
 						<li className="nav-item" onClick={() => props.logOutUser()}>
 							<Link to="/login" className="nav-link btn btn-outline-light ml-0 ml-lg-4 mt-lg-1" id="signupButton">
