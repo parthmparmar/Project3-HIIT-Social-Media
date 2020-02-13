@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-// const jwt = require("jsonwebtoken");
 
 const Schema = mongoose.Schema;
 
@@ -147,25 +146,6 @@ UserSchema.methods.comparePassword = function(candidatePassword, checkPassword) 
 		checkPassword(null, isMatch);
 	});
 };
-
-// // Generate Refresh Token and save to User collection
-// UserSchema.methods.generateRefreshToken = function() {
-// 	const user = this;
-// 	const token = jwt.sign({ userId: user._id }, process.env.REFRESH_TOKEN, {
-//     expiresIn: '7d',
-//   });
-// 	user.token = token;
-// 	user.save();
-// 	return token;
-// };
-
-// // Generate Access Token
-// UserSchema.methods.generateAccessToken = function() {
-// 	const user = this;
-// 	const token = jwt.sign({ userId: user._id }, process.env.ACCESS_TOKEN, {
-//     expiresIn: '15m'});
-// 	return token;
-// };
 
 // Method will calculate user's age
 UserSchema.methods.calculateAge = function() {

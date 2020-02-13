@@ -6,6 +6,7 @@ import Row from "../components/Row"
 import { set } from "mongoose";
 import MembersCard from "../components/MembersCard";
 
+
 class Members extends Component {
 	state = {
         dbMembers : [],
@@ -24,6 +25,8 @@ class Members extends Component {
     }
 
     render() {
+        require("js-cookie").remove("location");
+        require("js-cookie").set("location", "/Members");
 		if (this.state.redirect) {
 			return <Redirect to={this.state.redirect} />;
 		}

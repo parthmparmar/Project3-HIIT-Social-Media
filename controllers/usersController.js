@@ -1,6 +1,7 @@
 const db = require("../models");
 const { verify } = require("jsonwebtoken");
 const { createAccessToken, createRefreshToken, sendRefreshToken, sendAccessToken } = require("../auth/tokens");
+const isAuth = require("../auth/isAuth");
 
 module.exports = {
 	// Find user and authenticate
@@ -8,7 +9,6 @@ module.exports = {
 		console.log(req.body);
 		//checks that email is present or not
 		db.User.findOne({ email: req.body.email }, (err, user) => {
-			// console.log(user)
 			if (!user) {
 				res.json({ message: "Login failed, user not found" });
 				return;
@@ -20,21 +20,16 @@ module.exports = {
 					return res.status(400).json({
 						message: "Wrong Password"
 					});
-
-				const accesstoken = createAccessToken(user._id);
-				const refreshtoken = createRefreshToken(user._id);
+				// Create JWT token with integrated user id
+				const accessToken = createAccessToken(user._id);
 				let userData;
-
-				// Store Refreshtoken with user in "db"
-				user.token = refreshtoken;
+				// Save token to User DB and send back user Data
+				user.token = accessToken;
 				user.save((err, user) => {
 					if (err) res.status(400).send(err);
-
-					//Send token. Refreshtoken as a cookie and accesstoken as a regular response
 					userData = user.filterUserData();
 					userData.age = user.calculateAge();
-					userData.accessToken = accesstoken;
-					sendRefreshToken(res, refreshtoken);
+					userData.accessToken = accessToken;
 					sendAccessToken(res, req, userData);
 				});
 			});
@@ -129,23 +124,6 @@ module.exports = {
 		});
 	},
 
-	// Logout user
-	logoutUser: function(req, res) {
-		// Clear cookie
-		res.clearCookie("refreshtoken", { path: "/refresh_token" });
-
-		//Remove refreshtoken from db
-		db.User.findByIdAndUpdate(req.body.userId, { $set: { token: "" } }, function(err, dbUser) {
-			if (err) {
-				res.status(500).send({ message: "Error in updating user data" });
-				return;
-			}
-			return res.send({
-				message: "Logged out"
-			});
-		});
-	},
-
 	// Request all WOD from DB
 	findWods: function(req, res) {
 		db.Wod.find()
@@ -153,39 +131,33 @@ module.exports = {
 			.catch(err => res.status(422).json(err));
 	},
 
-	// Get a new access token with a refresh token
-	getNewToken: (req, res) => {
-		const token = req.cookies.refreshtoken;
-		console.log("TOKEN: ", token);
-		// If we don't have a token in our request
-		if (!token) return res.send({ accesstoken: "" });
-		// We have a token, let's verify it!
-		let payload = null;
-		try {
-			payload = verify(token, process.env.REFRESH_TOKEN);
-		} catch (err) {
-			return res.send({ accesstoken: "" });
+	// Verify JWT token from Cookie
+	checkToken: function(req, res) {
+		// Verify token and get ID encrypted in token
+		const userId = isAuth(req.body.token);
+		if (userId !== null) {
+			db.User.findById({ _id: userId }, function(err, user) {
+				if (err) return err;
+				if (user.token !== req.body.token) return res.status(401).send({ message: "Invalid Token" });
+				let userData = user.filterUserData();
+				userData.age = user.calculateAge();
+				res.status(200).send(userData);
+			});
+		} else {
+			res.status(401).send({ message: "Invalid Token" });
 		}
-		console.log(payload.userId);
-		// token is valid, check if user exist
-		// const user = db.User.find(user => user.id === payload.userId);
+	},
 
-		db.User.findById(payload.userId, function(err, user) {
+	// Logout user
+	logOutUser: function(req, res) {
+		//Remove token from user DB
+		db.User.findByIdAndUpdate(req.body.userId, { $set: { token: "" } }, function(err, dbUser) {
 			if (err) {
-				return res.send({ accesstoken: "" });
+				res.status(500).send({ message: "Error in updating user data" });
+				return;
 			}
-			// user exist, check if token exist on user
-			if (user.token !== token) return res.send({ accesstoken: "" });
-			// token exist, create new Refresh- and accesstoken
-			const accesstoken = createAccessToken(user._id);
-			const refreshtoken = createRefreshToken(user._id);
-			// update refreshtoken on user in db
-			// Could have different versions instead!
-			user.token = refreshtoken;
-			user.save((err, user) => {
-				if (err) res.status(400).send(err);
-				sendRefreshToken(res, refreshtoken);
-				return res.send({ accesstoken });
+			return res.send({
+				message: "Logged out"
 			});
 		});
 	}

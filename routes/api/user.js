@@ -11,11 +11,7 @@ router
 
 router
 	.route("/logout")
-	.post(usersController.logoutUser);
-
-	router
-	.route("/refresh_token")
-	.post(usersController.getNewToken);
+	.post(usersController.logOutUser);
 
 router
 	.route("/update")
@@ -32,5 +28,9 @@ router
 router
 	.route("/members/all")
 	.get(usersController.getAllMembers);
+
+router
+	.route("/token")
+	.post(usersController.checkToken);
 
 module.exports = router;

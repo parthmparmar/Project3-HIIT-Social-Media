@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 // import Input from "../components/Input";
 import StatUpdateBlock from "../components/statUpdateBlock";
 
+
 class UserStats extends Component {
 	state = {
 		weight: "",
@@ -94,6 +95,8 @@ class UserStats extends Component {
 	};
 
 	render() {
+		require("js-cookie").remove("location");
+		require("js-cookie").set("location", "/userStats");
 		console.log(this.props.userData.backSquat.backSquat)
 		if (this.state.redirect) {
 			return <Redirect to={this.state.redirect} />;

@@ -44,9 +44,9 @@ function NavBar(props) {
 						</li>
 					) : null}
 					{isAuthenticated ? (
-						<li className="nav-item" onClick={() => props.logOutUser()}>
-							<Link to="/login" className="nav-link btn btn-outline-light ml-0 ml-lg-4 mt-lg-1" id="signupButton">
-								Log out
+						<li className="nav-item">
+							<Link to="/dashboard" className="nav-link btn btn-outline-light ml-0 ml-lg-4 mt-lg-1" id="signupButton">
+								Dashboard
 							</Link>
 						</li>
 					) : null}
@@ -61,6 +61,13 @@ function NavBar(props) {
 						<li className="nav-item">
 							<Link to="/Members" className="nav-link btn btn-outline-light ml-0 ml-lg-4 mt-lg-1" id="signupButton">
 								Members
+							</Link>
+						</li>
+					) : null}
+					{isAuthenticated ? (
+						<li className="nav-item" onClick={() => props.logOutUser()}>
+							<Link to="/login" className="nav-link btn btn-outline-light ml-0 ml-lg-4 mt-lg-1" id="signupButton">
+								Log out
 							</Link>
 						</li>
 					) : null}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, useHistory, useLocation } from "react-router-dom";
 import API from "./utils/API";
 
 import NavBar from "./components/NavBar";
@@ -25,6 +25,7 @@ function App() {
 			.catch(err => console.log(err));
 		// clear Cookie
 		Cookies.remove("token");
+		Cookies.remove("location");
 		// Clear user from state
 		setUserData({});
 		setIsAuthenticated(false);
@@ -52,8 +53,7 @@ function App() {
 			<Router>
 				<NavBar logOutUser={logOutUser} />
 				<Switch>
-					<Route exact path="/" render={() => (isAuthenticated ? <Redirect to={"/dashboard"} /> : <Landing />)} />
-					<Route exact path="/login" render={props => <Login isAuthed={isAuthenticated} assignUser={setUserData} />} />
+					<Route exact path="/login" render={props => <Login isAuthed={setIsAuthenticated} assignUser={setUserData} />} />
 					<Route exact path="/register" render={props => <Register />} />
 					<PrivateRoute exact path="/dashboard" isAuthed={isAuthenticated}>
 						<Dashboard userData={userData} assignUser={setUserData} />
@@ -67,6 +67,7 @@ function App() {
 					<PrivateRoute exact path="/Members" isAuthed={isAuthenticated}>
 						<Members assignUser={setUserData} userData={userData} />
 					</PrivateRoute>
+					<Route exact path="/" render={() => (isAuthenticated ? <Redirect to={Cookies.get("location") || "/"} /> : <Landing />)} />
 					<Route path="*" component={() => <p> 404 Page not found </p>} /> {/* Catch all Route - 404 page */}
 				</Switch>
 			</Router>

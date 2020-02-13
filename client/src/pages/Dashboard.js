@@ -7,11 +7,14 @@ import UserStatsCard from "../components/StatsCard";
 import Col from "../components/Col";
 import { UserContext } from "../App";
 
+
 function Dashboard() {
 	// Create State from App component UserContext
 	// eslint-disable-next-line
 	const { userInfo, userAuth } = useContext(UserContext);
 	const [userData, setUserData] = userInfo;
+	require("js-cookie").remove("location");
+	require("js-cookie").set("location", "/dashboard");
 
 	return (
 		<Wrapper>
