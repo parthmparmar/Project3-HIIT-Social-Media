@@ -53,7 +53,7 @@ class Register extends Component {
 									<label htmlFor="email">Email Address*</label>
 									<input
 										className="form-control"
-										onChange={this.handleInputChange}
+										onChange={this.handleInputChange} 
 										value={this.state.email}
 										name="email"
 										id="email"

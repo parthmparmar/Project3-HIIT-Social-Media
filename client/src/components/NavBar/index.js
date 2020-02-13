@@ -4,8 +4,8 @@ import { UserContext } from "../../App";
 import "./style.css";
 
 function NavBar(props) {
-	const {userAuth} = useContext(UserContext);
-	const [isAuthenticated, setIsAuthenticated] = userAuth;
+	const { userAuth } = useContext(UserContext);
+	const [isAuthenticated] = userAuth;
 	return (
 		<nav className="navbar navbar-expand-lg">
 			<Link to="/" className="navbar-bran">
@@ -37,7 +37,6 @@ function NavBar(props) {
 						</li>
 					) : null}
 					{!isAuthenticated ? (
-     
 						<li className="nav-item">
 							<Link to="/register" className="nav-link btn btn-outline-light ml-0 ml-lg-4 mt-lg-1" id="signupButton">
 								Sign Up
@@ -45,24 +44,21 @@ function NavBar(props) {
 						</li>
 					) : null}
 					{isAuthenticated ? (
-    
-						<li className="nav-item" onClick={ ()=> props.logOutUser()}>
+						<li className="nav-item" onClick={() => props.logOutUser()}>
 							<Link to="/login" className="nav-link btn btn-outline-light ml-0 ml-lg-4 mt-lg-1" id="signupButton">
 								Log out
 							</Link>
 						</li>
 					) : null}
 					{isAuthenticated ? (
-   
-						<li className="nav-item" >
+						<li className="nav-item">
 							<Link to="/userStats" className="nav-link btn btn-outline-light ml-0 ml-lg-4 mt-lg-1" id="signupButton">
 								User Stats
 							</Link>
 						</li>
 					) : null}
 					{isAuthenticated ? (
-     
-						<li className="nav-item" >
+						<li className="nav-item">
 							<Link to="/Members" className="nav-link btn btn-outline-light ml-0 ml-lg-4 mt-lg-1" id="signupButton">
 								Members
 							</Link>

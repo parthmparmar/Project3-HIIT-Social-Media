@@ -26,5 +26,13 @@ export default {
 
 	getAllMembers: function() {
 		return axios.get("/api/user/members/all")
+	},
+
+	checkUserToken: function(token){
+		return axios.post("api/user/token", token);
+	},
+
+	logOutUser: function(userId) {
+		return axios.post("/api/user/logout", {userId: userId});
 	}
 };
