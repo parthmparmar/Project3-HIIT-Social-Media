@@ -3,15 +3,15 @@ import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import "./styles/landing.css";
 import Row from "../components/Row"
-import { set } from "mongoose";
 import MembersCard from "../components/MembersCard";
-import Avatar from 'avataaars'
+import Avatar from 'avataaars';
 
 
 class Members extends Component {
 	state = {
         dbMembers : [],
-        clickedId : ""
+        clickedId : "",
+        display: false
     }
 
     componentDidMount(){
@@ -25,6 +25,20 @@ class Members extends Component {
         });
     }
 
+    setClickedId = (index) => {
+        let newState = {
+            clickedId: index,
+            display: true
+        }
+        this.setState(newState);
+    }
+
+    showName = () => {
+        if (parseInt(this.state.clickedId) > -1){
+            return(<h3>{this.state.dbMembers[this.state.clickedId].firstName}</h3>)
+        }
+    }
+
     render() {
         require("js-cookie").remove("location");
         require("js-cookie").set("location", "/Members");
@@ -36,11 +50,12 @@ class Members extends Component {
             <div className="members-page">
 
                 <Row>
-                    {this.state.dbMembers.map((userData) => {
-                        return <MembersCard userData={userData}/>
+                    {this.state.dbMembers.map((userData, index) => {
+                        return <MembersCard userData={userData} key={index} id={index} click={this.setClickedId}/>
                     })}
                 </Row>
-
+                
+                    {this.showName()}
             </div>
 
         )
