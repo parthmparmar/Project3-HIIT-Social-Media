@@ -56,7 +56,7 @@ function UserInfo(props) {
                         <div className="card-body">
                             <h5 className="card-title">{firstLetterCap(props.userData.firstName)} {firstLetterCap(props.userData.lastName)}</h5>
                             <p className="card-text">{props.userData.status.status ? props.userData.status.status : "No Status"}</p>
-                            {statusEdit || <button className="btn btn-primary" onClick={()=>setStatusEdit(true)}>Edit</button>}
+                            {props.edit ? statusEdit || <button className="btn btn-primary" onClick={()=>setStatusEdit(true)}>Edit</button> : null}
                             {statusEdit &&
                                 <TextInput
                                     id="status-input"

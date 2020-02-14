@@ -28,7 +28,8 @@
     "google-map-react": "^1.1.6",
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.8.11"
+    "mongoose": "^5.8.11",
+    "react-bootstrap": "^1.0.0-beta.16"
   },
   "devDependencies": {
     "concurrently": "^5.1.0",
