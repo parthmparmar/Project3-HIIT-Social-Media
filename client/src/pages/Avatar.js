@@ -54,6 +54,8 @@ class AvatarSetup extends Component {
 	};
 
 	render() {
+        require("js-cookie").remove("location");
+		require("js-cookie").set("location", "/Avatar");
 		if (this.state.redirect) {
 			return <Redirect to={this.state.redirect} />;
 		}

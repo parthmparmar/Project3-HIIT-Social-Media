@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-let SALT = 10;
+const bcrypt = require("bcryptjs");
 
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
+	token: {
+		type: String,
+		default: ""
+	},
 	email: {
 		type: String,
 		required: true,
@@ -36,20 +39,16 @@ const UserSchema = new Schema({
 		}
 	],
 
-	avatar:{
-		topType: {type: String},
-		hairColor: {type: String},
-		facialHairType: {type: String},
-		facialHairColor: {type: String},
-		clotheColor: {type: String},
-		skinColor: {type: String},
+	avatar: {
+		topType: { type: String },
+		hairColor: { type: String },
+		facialHairType: { type: String },
+		facialHairColor: { type: String },
+		clotheColor: { type: String },
+		skinColor: { type: String }
 	},
 
-	myBox: [
-		{type: Schema.Types.ObjectId,
-		ref: "User"
-		}
-	],
+	myBox: [{ type: Schema.Types.ObjectId, ref: "User" }],
 	height: [
 		{
 			height: Number,
@@ -127,7 +126,7 @@ const UserSchema = new Schema({
 			fourHundredMeter: Number,
 			date: Date
 		}
-	],
+	]
 });
 
 // Hashing the password before saving to mongoDB
@@ -135,7 +134,7 @@ UserSchema.pre("save", function(next) {
 	var user = this;
 
 	if (user.isModified("password")) {
-		bcrypt.genSalt(SALT, function(err, salt) {
+		bcrypt.genSalt(10, function(err, salt) {
 			if (err) return next(err);
 
 			bcrypt.hash(user.password, salt, function(err, hash) {
@@ -149,29 +148,29 @@ UserSchema.pre("save", function(next) {
 	}
 });
 
-// This method will be added to each new user and it will be use to 
+// This method will be added to each new user and it will be use to
 // authenticate user
 UserSchema.methods.comparePassword = function(candidatePassword, checkPassword) {
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
-    if(err) return checkPassword(err);
-    checkPassword(null, isMatch);
-  });
-}
+	bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+		if (err) return checkPassword(err);
+		checkPassword(null, isMatch);
+	});
+};
 
 // Method will calculate user's age
 UserSchema.methods.calculateAge = function() {
 	var today = new Date();
-    var birthDate = new Date(this.birthday);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age = age - 1;
-    }
+	var birthDate = new Date(this.birthday);
+	var age = today.getFullYear() - birthDate.getFullYear();
+	var m = today.getMonth() - birthDate.getMonth();
+	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+		age = age - 1;
+	}
 
-    return age;
-}
+	return age;
+};
 
-// Method to filter user data for sending to Client 
+// Method to filter user data for sending to Client
 UserSchema.methods.filterUserData = function() {
 	return {
 		_id: this._id,
@@ -179,23 +178,23 @@ UserSchema.methods.filterUserData = function() {
 		lastName: this.lastName,
 		gender: this.gender,
 		box: this.box,
-		status: this.status[0] || {statu: ""},
+		status: this.status[0] || { statu: "" },
 		avatar: this.avatar,
-		height: this.height[0] || {height: ""},
-		weight: this.weight[0]|| {weight: ""},
-		backSquat: this.backSquat[0] || {backSquat: ""},
-        cleanJerk: this.cleanJerk[0] || {cleanJerk: ""},
-        snatch: this.snatch[0] || {snatch: ""},
-        deadlift: this.deadlift[0] || {deadlift: ""},
-        overHeadPress: this.overHeadPress[0] || {overHeadPress: ""},
-        maxPullUps: this.maxPullUps[0] || {maxPullUps: ""},
-        fran: this.fran[0] || {fran: ""},
-        grace: this.grace[0] || {grace: ""},
-        hellen: this.hellen[0] || {hellen: ""},
-        fiveK: this.fiveK[0] || {fiveK: ""},
-        fourHundredMeter: this.fourHundredMeter[0] || {fourHundredMeter: ""},
-	}
-}
+		height: this.height[0] || { height: "" },
+		weight: this.weight[0] || { weight: "" },
+		backSquat: this.backSquat[0] || { backSquat: "" },
+		cleanJerk: this.cleanJerk[0] || { cleanJerk: "" },
+		snatch: this.snatch[0] || { snatch: "" },
+		deadlift: this.deadlift[0] || { deadlift: "" },
+		overHeadPress: this.overHeadPress[0] || { overHeadPress: "" },
+		maxPullUps: this.maxPullUps[0] || { maxPullUps: "" },
+		fran: this.fran[0] || { fran: "" },
+		grace: this.grace[0] || { grace: "" },
+		hellen: this.hellen[0] || { hellen: "" },
+		fiveK: this.fiveK[0] || { fiveK: "" },
+		fourHundredMeter: this.fourHundredMeter[0] || { fourHundredMeter: "" }
+	};
+};
 
 const User = mongoose.model("User", UserSchema);
 

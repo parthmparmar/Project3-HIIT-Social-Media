@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { Redirect, Link } from "react-router-dom";
 import "./styles/landing.css";
+const Cookies = require("js-cookie");
 
 class Landing extends Component {
 	state = {
@@ -25,8 +26,9 @@ class Landing extends Component {
 				password: this.state.password
 			})
 				.then(res => {
-					this.props.isAuthed();
+					Cookies.set("token", res.data.accessToken);
 					this.props.assignUser(res.data);
+					this.props.isAuthed(true);
 					if (res.data.firstName) {
 						this.setState({ redirect: "/dashboard" });
 					} else {

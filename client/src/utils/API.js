@@ -28,6 +28,14 @@ export default {
 		return axios.get("/api/user/members/all")
 	},
 
+	checkUserToken: function(token){
+		return axios.post("api/user/token", token);
+	},
+
+	logOutUser: function(userId) {
+		return axios.post("/api/user/logout", {userId: userId});
+	},
+
 	addAvatar: function(userData){
 		return axios.post("/api/user/avatar", userData)
 	}
