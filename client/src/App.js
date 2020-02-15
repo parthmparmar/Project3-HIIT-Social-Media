@@ -53,7 +53,7 @@ function App() {
 	return (
 		<UserContext.Provider value={{ userInfo: [userData, setUserData], userAuth: [isAuthenticated, setIsAuthenticated] }}>
 			<Router>
-				<NavBar logOutUser={logOutUser} />
+				<NavBar logOutUser={logOutUser} userData={userData}/>
 				<Switch>
 					<Route exact path="/login" render={props => <Login isAuthed={setIsAuthenticated} assignUser={setUserData} />} />
 					<Route exact path="/register" render={props => <Register />} />

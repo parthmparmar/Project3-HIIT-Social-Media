@@ -138,6 +138,25 @@ module.exports = {
 		});
 	},
 
+	// Save new user to DB 
+	create2:function(req, res) {
+		db.User.findOne({ email: req.body.email }, (err, user) => {
+			if (!user) {
+				const user = new db.User({
+					email: req.body.email,
+					password: req.body.password
+				}).save((err, response) => {
+					if (err) res.status(400).send(err);
+					res.status(200).send(response);
+				});
+			}
+			else{
+				res.status(400).send("User Exists Use New Email")
+			}
+
+	})
+	},
+
 	// Request all WOD from DB
 	findWods: function(req, res) {
 		db.Wod.find()

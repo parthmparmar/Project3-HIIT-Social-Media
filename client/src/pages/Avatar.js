@@ -62,7 +62,7 @@ class AvatarSetup extends Component {
 
 		return (
 			<main id="Avatar-Page">
-                <Wrapper>
+                <div className="container rounded shadow p-4 mt-4 w-25">
                     <Avatar
                         avatarStyle='Transparent'
                         topType={this.state.topType}
@@ -130,7 +130,7 @@ class AvatarSetup extends Component {
                         </Select>
                         <button className="btn btn-primary" onClick={this.handleFormSubmit}>Submit</button>
                     </form>
-                </Wrapper>
+                </div>
 			</main>
 		);
 	}

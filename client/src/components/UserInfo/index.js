@@ -17,24 +17,26 @@ function UserInfo(props) {
 
     function clickStatusUpdate(){
         setStatusEdit(false)
-        let filteredDataArray = [
-            {status: statusInput.current.value}
-        ]; 
-        if (filteredDataArray) {
-            API.updateStats({
-                userId: props.userData._id,
-                filteredDataArray
-            })
-                .then(res => {
-                    console.log(res.data);
-                    props.assignUser(res.data);
+        if(statusInput.current.value) {
+            let filteredDataArray = [
+                {status: statusInput.current.value.trim()}
+            ]; 
+            if (filteredDataArray) {
+                API.updateStats({
+                    userId: props.userData._id,
+                    filteredDataArray
                 })
-                .catch(err => console.log(err));
+                    .then(res => {
+                        console.log(res.data);
+                        props.assignUser(res.data);
+                    })
+                    .catch(err => console.log(err));
+                }
+            else {
+                console.log("New status not added")
             }
-        else {
-            console.log("New status not added")
         }
-        }
+    }
 
     return (
         <div>
@@ -56,7 +58,7 @@ function UserInfo(props) {
                         <div className="card-body">
                             <h5 className="card-title">{firstLetterCap(props.userData.firstName)} {firstLetterCap(props.userData.lastName)}</h5>
                             <p className="card-text">{props.userData.status.status ? props.userData.status.status : "No Status"}</p>
-                            {statusEdit || <button className="btn btn-primary" onClick={()=>setStatusEdit(true)}>Edit</button>}
+                            {props.edit ? statusEdit || <button className="btn btn-primary" onClick={()=>setStatusEdit(true)}>Update</button> : null}
                             {statusEdit &&
                                 <TextInput
                                     id="status-input"
@@ -71,11 +73,11 @@ function UserInfo(props) {
                     </div>
                 </div>
                 <ul className="list-group list-group-horizontal">
-                <li className="list-group-item">Division: {firstLetterCap(props.userData.gender)}</li>
-                <li className="list-group-item">Age: {props.userData.age}</li>
-                <li className="list-group-item">Height: {convertHeight(props.userData.height.height)}</li>
-                <li className="list-group-item">Weight: {props.userData.weight.weight} LB</li>
-                <li className="list-group-item">Box: {props.userData.box}</li>
+                <li className="list-group-item">Division: {props.userData.gender ? firstLetterCap(props.userData.gender): "NaN"}</li>
+                <li className="list-group-item">Age: {props.userData.birthday ? props.userData.age : "NaN"}</li>
+                <li className="list-group-item">Height: {props.userData.height.height ? convertHeight(props.userData.height.height): "NaN"}</li>
+                <li className="list-group-item">Weight: {props.userData.weight.weight || "NaN"} LB</li>
+                <li className="list-group-item">Box: {props.userData.box || "NaN"}</li>
             </ul>
             </div>
         </div>

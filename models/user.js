@@ -178,6 +178,7 @@ UserSchema.methods.filterUserData = function() {
 		lastName: this.lastName,
 		gender: this.gender,
 		box: this.box,
+		birthday: this.birthday,
 		status: this.status[0] || { statu: "" },
 		avatar: this.avatar,
 		height: this.height[0] || { height: "" },

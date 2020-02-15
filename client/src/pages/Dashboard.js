@@ -22,7 +22,7 @@ function Dashboard() {
 				<Col size="12 lg-7">
 					<Row>
 						<Col size="12">
-							<UserInfo userData={userData} assignUser={setUserData} />
+							<UserInfo userData={userData} assignUser={setUserData} edit={true} />
 						</Col>
 						<Col size="12">
 							<UserStatsCard userData={userData} />

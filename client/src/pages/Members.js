@@ -4,7 +4,8 @@ import { Redirect } from "react-router-dom";
 import "./styles/landing.css";
 import Row from "../components/Row"
 import MembersCard from "../components/MembersCard";
-import Avatar from 'avataaars';
+import Wrapper from "../components/Wrapper";
+import UserModal from "../components/UserModal";
 
 
 class Members extends Component {
@@ -33,11 +34,24 @@ class Members extends Component {
         this.setState(newState);
     }
 
-    showName = () => {
+    displayModal = () => {
         if (parseInt(this.state.clickedId) > -1){
-            return(<h3>{this.state.dbMembers[this.state.clickedId].firstName}</h3>)
+            return(                
+                <UserModal
+                show={this.state.display}
+                onHide={() => this.setShowFalse()}
+                selectedUser={this.state.dbMembers[this.state.clickedId]}
+                >
+                </UserModal>)
         }
     }
+
+    setShowFalse = () => {
+        this.setState({
+            display: false
+        });
+    }
+
 
     render() {
         require("js-cookie").remove("location");
@@ -48,14 +62,18 @@ class Members extends Component {
         
 		return (
             <div className="members-page">
-
-                <Row>
-                    {this.state.dbMembers.map((userData, index) => {
-                        return <MembersCard userData={userData} key={index} id={index} click={this.setClickedId}/>
-                    })}
-                </Row>
+                <Wrapper>
                 
-                    {this.showName()}
+                    <Row>
+                        {this.state.dbMembers.map((userData, index) => {
+                            return <MembersCard userData={userData} key={index} id={index} click={this.setClickedId}/>
+                        })}
+                    </Row>
+                    
+                    {this.displayModal()}
+
+                </Wrapper>
+               
             </div>
 
         )
