@@ -3,7 +3,7 @@ const usersController = require("../../controllers/usersController");
 
 router
 	.route("/signup")
-	.post(usersController.create);
+	.post(usersController.create2);
 
 router
 	.route("/signin")
