@@ -48,6 +48,7 @@ function UserInfo(props) {
                 <div className="row no-gutters">
                     <div className="col-md-4">
                         <Avatar
+                             style={{width: "100%"}}
                              avatarStyle='Transparent'
                              topType={props.userData.avatar.topType || ""}
                              hairColor={props.userData.avatar.hairColor || ""}
