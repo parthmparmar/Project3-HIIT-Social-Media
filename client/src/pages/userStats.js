@@ -4,6 +4,14 @@ import { Redirect } from "react-router-dom";
 // import Input from "../components/Input";
 import StatUpdateBlock from "../components/statUpdateBlock";
 
+function deconstruct (fran, type) {
+	var minutes = Math.floor(fran/60);
+	var seconds = fran % 60;
+	if (type === "m")
+	return minutes;
+	else if (type === "s")
+	return seconds
+}
 
 class UserStats extends Component {
 	state = {
@@ -29,20 +37,40 @@ class UserStats extends Component {
 		maxPullUpsCurrent: this.props.userData.maxPullUps.maxPullUps,
 		maxPullUpsEdit: this.props.userData.maxPullUps.maxPullUps ? false : true,
 		fran: "",
-		franCurrent: this.props.userData.fran.fran,
-		franEdit: this.props.userData.fran.fran ? false : true,
+		franMinutes: "",
+		franSeconds: "",
+		franCurrentMinutes: deconstruct(this.props.userData.fran.fran, "m"),
+		franCurrentSeconds: deconstruct(this.props.userData.fran.fran, "s"),
+		franMinutesEdit: this.props.userData.fran.fran ? false : true,
+		franSecondsEdit: this.props.userData.fran.fran ? false : true,
 		grace: "",
-		graceCurrent: this.props.userData.grace.grace,
-		graceEdit: this.props.userData.grace.grace ? false : true,
+		graceMinutes: "",
+		graceSeconds: "",
+		graceCurrentMinutes: deconstruct(this.props.userData.grace.grace, "m"),
+		franCurrentSeconds: deconstruct(this.props.userData.grace.grace, "s"),
+		graceMinutesEdit: this.props.userData.grace.grace ? false : true,
+		graceSecondsEdit: this.props.userData.grace.grace ? false : true,
 		hellen: "",
-		hellenCurrent: this.props.userData.hellen.hellen,
-		hellenEdit: this.props.userData.hellen.hellen ? false : true,
+		hellenMinutes: "",
+		hellenSeconds: "",
+		hellenCurrentMinutes: deconstruct(this.props.userData.hellen.hellen, "m"),
+		hellenCurrentSeconds: deconstruct(this.props.userData.hellen.hellen, "s"),
+		hellenMinutesEdit: this.props.userData.hellen.hellen ? false : true,
+		hellenSecondsEdit: this.props.userData.hellen.hellen ? false : true,
 		fiveK: "",
-		fiveKCurrent: this.props.userData.fiveK.fiveK,
-		fiveKEdit: this.props.userData.fiveK.fiveK ? false : true,
+		fiveKMinutes: "",
+		fiveKSeconds: "",
+		fiveKCurrentSeconds: deconstruct(this.props.userData.fiveK.fiveK, "m"),
+		fiveKCurrentMinutes: deconstruct(this.props.userData.fiveK.fiveK, "s"),
+		fiveKMinutesEdit: this.props.userData.fiveK.fiveK ? false : true,
+		fiveKSecondsEdit: this.props.userData.fiveK.fiveK ? false : true,
+		fourHundredMeterMinutes: "",
+		fourHundredMeterSeconds: "",
 		fourHundredMeter: "",
-		fourHundredMeterCurrent: this.props.userData.fourHundredMeter.fourHundredMeter,
-		fourHundredMeterEdit: this.props.userData.fourHundredMeter.fourHundredMeter ? false : true,
+		fourHundredMeterCurrentMinutes: deconstruct(this.props.userData.fourHundredMeter.fourHundredMeter, "m"),
+		fourHundredMeterCurrentSeconds: deconstruct(this.props.userData.fourHundredMeter.fourHundredMeter, "s"),
+		fourHundredMeterMinutesEdit: this.props.userData.fourHundredMeter.fourHundredMeter ? false : true,
+		fourHundredMeterSecondsEdit: this.props.userData.fourHundredMeter.fourHundredMeter ? false : true,
 		redirect: null
 	};
 
@@ -70,11 +98,11 @@ class UserStats extends Component {
 		{deadlift: this.state.deadlift},
 		{overHeadPress: this.state.overHeadPress},
 		{maxPullUps: this.state.maxPullUps},
-		{fran: this.state.fran},
-		{grace: this.state.grace},
-		{hellen: this.state.hellen},
-		{fiveK: this.state.fiveK},
-		{fourHundredMeter: this.state.fourHundredMeter},
+		{fran: this.state.franMinutes ? parseInt(this.state.franMinutes * 60) + parseInt(this.state.franSeconds) : ""},
+		{grace: this.state.graceMinutes ? parseInt(this.state.graceMinutes * 60) + parseInt(this.state.graceSeconds) : ""},
+		{hellen: this.state.hellenMinutes ? parseInt(this.state.hellenMinutes * 60) + parseInt(this.state.hellenSeconds) : ""},
+		{fiveK: this.state.fiveKMinutes ? parseInt(this.state.fiveKMinutes * 60) + parseInt(this.state.fiveKSeconds) : ""},
+		{fourHundredMeter: this.state.fourHundredMeterMinutes ? parseInt(this.state.fourHundredMeterMinutes * 60) + parseInt(this.state.fourHundredMeterSeconds) : ""},
 		];
 		let filteredDataArray  = dataArray.filter(value => Object.values(value) != "");
 		console.log(filteredDataArray);
@@ -192,63 +220,120 @@ class UserStats extends Component {
 				</StatUpdateBlock>
 
 				<StatUpdateBlock
-					name = "fran"
+					name = "franMinutes"
 					type = "number"
 					change = {this.handleInputChange}
-					state = {this.state.fran}
+					state = {this.state.franMinutes}
 					edit = {this.editMode}
-					currentState = {this.state.franCurrent}
-					editState = {this.state.franEdit}
+					currentState = {this.state.franCurrentMinutes}
+					editState = {this.state.franMinutesEdit}
 				>
-					Fran
+					Fran (Minutes)
+				</StatUpdateBlock>
+				<StatUpdateBlock
+					name = "franSeconds"
+					type = "number"
+					change = {this.handleInputChange}
+					state = {this.state.franSeconds}
+					edit = {this.editMode}
+					currentState = {this.state.franCurrentSeconds}
+					editState = {this.state.franSecondsEdit}
+				>
+					Fran (Seconds)
 				</StatUpdateBlock>
 
 				<StatUpdateBlock
-					name = "grace"
+					name = "graceMinutes"
 					type = "number"
 					change = {this.handleInputChange}
-					state = {this.state.grace}
+					state = {this.state.graceMinutes}
 					edit = {this.editMode}
-					currentState = {this.state.graceCurrent}
-					editState = {this.state.graceEdit}
+					currentState = {this.state.graceCurrentMinutes}
+					editState = {this.state.graceMinutesEdit}
 				>
-					Grace
+					Grace (Minutes)
+				</StatUpdateBlock>
+				<StatUpdateBlock
+					name = "graceSeconds"
+					type = "number"
+					change = {this.handleInputChange}
+					state = {this.state.graceSeconds}
+					edit = {this.editMode}
+					currentState = {this.state.graceCurrentSeconds}
+					editState = {this.state.graceSecondsEdit}
+				>
+					Grace (Seconds)
 				</StatUpdateBlock>
 
 				<StatUpdateBlock
-					name = "hellen"
+					name = "hellenMinutes"
 					type = "number"
 					change = {this.handleInputChange}
-					state = {this.state.hellen}
+					state = {this.state.hellenMinutes}
 					edit = {this.editMode}
-					currentState = {this.state.hellenCurrent}
-					editState = {this.state.hellenEdit}
+					currentState = {this.state.hellenCurrentMinutes}
+					editState = {this.state.hellenMinutesEdit}
 				>
-					Hellen
+					Hellen (Minutes)
+				</StatUpdateBlock>
+				<StatUpdateBlock
+					name = "hellenSeconds"
+					type = "number"
+					change = {this.handleInputChange}
+					state = {this.state.hellenSeconds}
+					edit = {this.editMode}
+					currentState = {this.state.hellenCurrentSeconds}
+					editState = {this.state.hellenSecondsEdit}
+				>
+					Hellen (Seconds)
 				</StatUpdateBlock>
 
 				<StatUpdateBlock
-					name = "fiveK"
+					name = "fiveKMinutes"
 					type = "number"
 					change = {this.handleInputChange}
-					state = {this.state.fiveK}
+					state = {this.state.fiveKMinutes}
 					edit = {this.editMode}
-					currentState = {this.state.fiveKCurrent}
-					editState = {this.state.fiveKEdit}
+					currentState = {this.state.fiveKCurrentMinutes}
+					editState = {this.state.fiveKMinutesEdit}
 				>
-					5K
+					5K (Minutes)
 				</StatUpdateBlock>
 
 				<StatUpdateBlock
-					name = "fourHundredMeter"
+					name = "fiveKSeconds"
 					type = "number"
 					change = {this.handleInputChange}
-					state = {this.state.fourHundredMeter}
+					state = {this.state.fiveKSeconds}
 					edit = {this.editMode}
-					currentState = {this.state.fourHundredMeterCurrent}
-					editState = {this.state.fourHundredMeterEdit}
+					currentState = {this.state.fiveKCurrentSeconds}
+					editState = {this.state.fiveKSecondsEdit}
 				>
-					400 Meter
+					5K (Seconds)
+				</StatUpdateBlock>
+
+				<StatUpdateBlock
+					name = "fourHundredMeterMinutes"
+					type = "number"
+					change = {this.handleInputChange}
+					state = {this.state.fourHundredMeterMinutes}
+					edit = {this.editMode}
+					currentState = {this.state.fourHundredMeterCurrentMinutes}
+					editState = {this.state.fourHundredMeterMinutesEdit}
+				>
+					400 Meter (Minutes)
+				</StatUpdateBlock>
+
+				<StatUpdateBlock
+					name = "fourHundredMeterSeconds"
+					type = "number"
+					change = {this.handleInputChange}
+					state = {this.state.fourHundredMeterSeconds}
+					edit = {this.editMode}
+					currentState = {this.state.fourHundredMeterCurrentSeconds}
+					editState = {this.state.fourHundredMeterSecondsEdit}
+				>
+					400 Meter (Seconds)
 				</StatUpdateBlock>
 
 					<button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>

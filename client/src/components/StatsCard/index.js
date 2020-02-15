@@ -2,6 +2,12 @@ import React from "react";
 
 function UserStats(props) {
 
+  function convertTime (time) {
+        var minutes = Math.floor(time / 60);
+        var seconds = time % 60;
+        return minutes + ":" + seconds;
+  }
+
     return (
         <div style={{backgroundColor: "#fff"}}>
           <div className="row">
@@ -54,15 +60,15 @@ function UserStats(props) {
               </tr>
               <tr>
                 <td>Fran</td>
-                <td>{props.userData.fran.fran}</td>
+                <td>{convertTime(props.userData.fran.fran)}</td>
               </tr>
               <tr>
                 <td>Grace</td>
-                <td>{props.userData.grace.grace}</td>
+                <td>{convertTime(props.userData.grace.grace)}</td>
               </tr>
               <tr>
                 <td>Hellen</td>
-                <td>{props.userData.hellen.hellen}</td>
+                <td>{convertTime(props.userData.hellen.hellen)}</td>
               </tr>
             </tbody>
           </table>
@@ -79,11 +85,11 @@ function UserStats(props) {
             <tbody>
               <tr>
                 <td>5k Run</td>
-                <td>{props.userData.fiveK.fiveK}</td>
+                <td>{convertTime(props.userData.fiveK.fiveK)}</td>
               </tr>
               <tr>
                 <td>400m Sprint</td>
-                <td>{props.userData.fourHundredMeter.fourHundredMeter}</td>
+                <td>{convertTime(props.userData.fourHundredMeter.fourHundredMeter)}</td>
               </tr>
             </tbody>
           </table>
