@@ -3,6 +3,8 @@ import API from "../utils/API";
 import { Redirect, Link } from "react-router-dom";
 import "./styles/landing.css";
 import { UserContext } from "../App";
+import UserStats from "../components/StatsCard";
+import { Alert } from "react-bootstrap";
 const Cookies = require("js-cookie");
 
 function Landing() {
@@ -13,6 +15,7 @@ function Landing() {
 	// Create State
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [errorMsg, setErrorMsg] = useState("");
 	const [redirect, setRedirect] = useState(null);
 
 	// Handle Submit Form
@@ -34,7 +37,10 @@ function Landing() {
 						setRedirect("/userRegister");
 					}
 				})
-				.catch(err => console.log(err));
+				.catch((err) => {
+					console.log(err);
+					setErrorMsg("Incorrect Username or Password, please try again");
+				});
 		}
 	};
 
@@ -69,6 +75,7 @@ function Landing() {
 
 				<div className="col-lg-6 col-xl-5 px-5 d-none d-lg-block">
 					<div id="form-container" className="p-5 m-5">
+					{errorMsg ? <Alert variant="danger">{errorMsg}</Alert> : null}
 						<div className="text-center text-white">
 							<img src="/assets/images/icon.png" style={{ width: 45 }} alt="WODBook icon" />
 							<h4 style={{ color: "#C0DEF4" }}>Sign in to WODBook</h4>

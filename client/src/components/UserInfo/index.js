@@ -38,6 +38,10 @@ function UserInfo(props) {
         }
     }
 
+    function clickCancelStatusUpdate(){
+        setStatusEdit(false);
+    }
+
     return (
         <div>
             <div id="user-info-card" className="card shadow mb-3">
@@ -64,6 +68,7 @@ function UserInfo(props) {
                                     id="status-input"
                                     name="status"
                                     click={() => clickStatusUpdate()}
+                                    clickCancel={() => clickCancelStatusUpdate()}
                                     refInput={statusInput}
                                 >   
                                     New Status

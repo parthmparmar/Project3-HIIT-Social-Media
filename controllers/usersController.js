@@ -9,7 +9,7 @@ module.exports = {
 		//checks that email is present or not
 		db.User.findOne({ email: req.body.email }, (err, user) => {
 			if (!user) {
-				res.json({ message: "Login failed, user not found" });
+				res.status(400).json({ message: "Login failed, user not found" });
 				return;
 			}
 			// If email is found then it will compare password
