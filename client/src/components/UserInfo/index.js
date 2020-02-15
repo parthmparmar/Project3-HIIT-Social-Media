@@ -38,12 +38,17 @@ function UserInfo(props) {
         }
     }
 
+    function clickCancelStatusUpdate(){
+        setStatusEdit(false);
+    }
+
     return (
         <div>
             <div id="user-info-card" className="card shadow mb-3">
                 <div className="row no-gutters">
                     <div className="col-md-4">
                         <Avatar
+                             style={{width: "100%"}}
                              avatarStyle='Transparent'
                              topType={props.userData.avatar.topType || ""}
                              hairColor={props.userData.avatar.hairColor || ""}
@@ -64,6 +69,7 @@ function UserInfo(props) {
                                     id="status-input"
                                     name="status"
                                     click={() => clickStatusUpdate()}
+                                    clickCancel={() => clickCancelStatusUpdate()}
                                     refInput={statusInput}
                                 >   
                                     New Status

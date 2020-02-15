@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { Redirect, Link } from "react-router-dom";
 import "./styles/landing.css";
+import { Alert } from "react-bootstrap";
 const Cookies = require("js-cookie");
+
 
 class Landing extends Component {
 	state = {
 		email: "",
 		password: "",
+		errorMsg:"",
 		redirect: null
 	};
 
@@ -29,13 +32,17 @@ class Landing extends Component {
 					Cookies.set("token", res.data.accessToken);
 					this.props.assignUser(res.data);
 					this.props.isAuthed(true);
-					if (res.data.firstName) {
-						this.setState({ redirect: "/dashboard" });
-					} else {
-						this.setState({ redirect: "/userRegister" });
-					}
+					console.log(res.data)
+						if (res.data.firstName) {
+							this.setState({ redirect: "/dashboard" });
+						} else {
+							this.setState({ redirect: "/userRegister" });
+						}
 				})
-				.catch(err => console.log(err));
+				.catch((err) => {
+					console.log(err);
+					this.setState({errorMsg: "Incorrect Username or Password, please try again"})
+				});
 		}
 	};
 
@@ -48,6 +55,7 @@ class Landing extends Component {
 			<main id="login-page">
 				<div className="row">
 					<div className="col-12 col-sm-8 col-md-5 col-lg-4 mx-auto">
+					{this.state.errorMsg ? <Alert variant="danger">{this.state.errorMsg}</Alert> : null}
 						<div id="form-container" className="p-5 mx-2 mt-2 mt-sm-5">
 							<div className="text-center text-white">
 								<img src="/assets/images/icon.png" style={{ width: 45 }} alt="WODBook icon" />
@@ -57,7 +65,7 @@ class Landing extends Component {
 								<div className="form-group">
 									<label htmlFor="email">Email Address</label>
 									<input
-										className="form-control"
+										className={this.state.errorMsg ? "form-control is-invalid" : "form-control"}
 										onChange={this.handleInputChange}
 										value={this.state.email}
 										name="email"
@@ -69,7 +77,7 @@ class Landing extends Component {
 								<div className="form-group">
 									<label htmlFor="password">Password</label>
 									<input
-										className="form-control"
+										className={this.state.errorMsg ? "form-control is-invalid" : "form-control"}
 										onChange={this.handleInputChange}
 										value={this.state.password}
 										name="password"
