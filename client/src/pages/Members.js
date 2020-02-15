@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import "./styles/landing.css";
 import Row from "../components/Row"
 import MembersCard from "../components/MembersCard";
-import Avatar from 'avataaars';
+import Wrapper from "../components/Wrapper";
 import UserModal from "../components/UserModal";
 
 
@@ -62,14 +62,18 @@ class Members extends Component {
         
 		return (
             <div className="members-page">
-
-                <Row>
-                    {this.state.dbMembers.map((userData, index) => {
-                        return <MembersCard userData={userData} key={index} id={index} click={this.setClickedId}/>
-                    })}
-                </Row>
+                <Wrapper>
+                
+                    <Row>
+                        {this.state.dbMembers.map((userData, index) => {
+                            return <MembersCard userData={userData} key={index} id={index} click={this.setClickedId}/>
+                        })}
+                    </Row>
+                    
                     {this.displayModal()}
 
+                </Wrapper>
+               
             </div>
 
         )
