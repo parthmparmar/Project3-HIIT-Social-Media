@@ -73,11 +73,11 @@ function UserInfo(props) {
                     </div>
                 </div>
                 <ul className="list-group list-group-horizontal">
-                <li className="list-group-item">Division: {firstLetterCap(props.userData.gender)}</li>
-                <li className="list-group-item">Age: {props.userData.age}</li>
-                <li className="list-group-item">Height: {convertHeight(props.userData.height.height)}</li>
-                <li className="list-group-item">Weight: {props.userData.weight.weight} LB</li>
-                <li className="list-group-item">Box: {props.userData.box}</li>
+                <li className="list-group-item">Division: {props.userData.gender ? firstLetterCap(props.userData.gender): "NaN"}</li>
+                <li className="list-group-item">Age: {props.userData.birthday ? props.userData.age : "NaN"}</li>
+                <li className="list-group-item">Height: {props.userData.height.height ? convertHeight(props.userData.height.height): "NaN"}</li>
+                <li className="list-group-item">Weight: {props.userData.weight.weight || "NaN"} LB</li>
+                <li className="list-group-item">Box: {props.userData.box || "NaN"}</li>
             </ul>
             </div>
         </div>
