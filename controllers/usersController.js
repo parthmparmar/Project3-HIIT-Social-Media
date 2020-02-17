@@ -140,6 +140,7 @@ module.exports = {
 
 	// Save new user to DB 
 	create2:function(req, res) {
+		console.log("test")
 		db.User.findOne({ email: req.body.email }, (err, user) => {
 			if (!user) {
 				const user = new db.User({
@@ -153,6 +154,9 @@ module.exports = {
 			else{
 				res.status(400).send("User Exists Use New Email")
 			}
+		if(err) {
+			console.log(err)
+		}
 
 	})
 	},
