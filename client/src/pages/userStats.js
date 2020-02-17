@@ -3,6 +3,7 @@ import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 // import Input from "../components/Input";
 import StatUpdateBlock from "../components/statUpdateBlock";
+import TimeUpdateBlock from "../components/TimeUpdateBlock";
 
 function deconstruct (fran, type) {
 	var minutes = Math.floor(fran/60);
@@ -47,7 +48,7 @@ class UserStats extends Component {
 		graceMinutes: "",
 		graceSeconds: "",
 		graceCurrentMinutes: deconstruct(this.props.userData.grace.grace, "m"),
-		franCurrentSeconds: deconstruct(this.props.userData.grace.grace, "s"),
+		graceCurrentSeconds: deconstruct(this.props.userData.grace.grace, "s"),
 		graceMinutesEdit: this.props.userData.grace.grace ? false : true,
 		graceSecondsEdit: this.props.userData.grace.grace ? false : true,
 		hellen: "",
@@ -80,7 +81,6 @@ class UserStats extends Component {
 			[name]: value,
 		});
 	};
-
 	editMode = field => {
 		let fieldEdit = field+"Edit";
 		this.setState({
@@ -219,122 +219,100 @@ class UserStats extends Component {
 					Max Pull Ups
 				</StatUpdateBlock>
 
-				<StatUpdateBlock
+				<TimeUpdateBlock
 					name = "franMinutes"
+					name2 = "franSeconds"
 					type = "number"
 					change = {this.handleInputChange}
+					change2 = {this.handleInputChange2}
 					state = {this.state.franMinutes}
+					state2 = {this.state.franSeconds}
 					edit = {this.editMode}
-					currentState = {this.state.franCurrentMinutes}
+					currentState1 = {this.state.franCurrentMinutes}
+					currentState2 ={this.state.franCurrentSeconds}
 					editState = {this.state.franMinutesEdit}
-				>
-					Fran (Minutes)
-				</StatUpdateBlock>
-				<StatUpdateBlock
-					name = "franSeconds"
-					type = "number"
-					change = {this.handleInputChange}
-					state = {this.state.franSeconds}
-					edit = {this.editMode}
-					currentState = {this.state.franCurrentSeconds}
-					editState = {this.state.franSecondsEdit}
-				>
-					Fran (Seconds)
-				</StatUpdateBlock>
+					editState2 = {this.state.franSecondsEdit}
+					excercise = {(this.state.franCurrentMinutes
+						 + ":" + this.state.franCurrentSeconds)}
+					>
+						Fran
+				</TimeUpdateBlock>
 
-				<StatUpdateBlock
+				<TimeUpdateBlock
 					name = "graceMinutes"
+					name2 = "graceSeconds"
 					type = "number"
 					change = {this.handleInputChange}
+					change2 = {this.handleInputChange2}
 					state = {this.state.graceMinutes}
+					state2 = {this.state.graceSeconds}
 					edit = {this.editMode}
-					currentState = {this.state.graceCurrentMinutes}
+					currentState1 = {this.state.graceCurrentMinutes}
+					currentState2 ={this.state.graceCurrentSeconds}
 					editState = {this.state.graceMinutesEdit}
-				>
-					Grace (Minutes)
-				</StatUpdateBlock>
-				<StatUpdateBlock
-					name = "graceSeconds"
-					type = "number"
-					change = {this.handleInputChange}
-					state = {this.state.graceSeconds}
-					edit = {this.editMode}
-					currentState = {this.state.graceCurrentSeconds}
-					editState = {this.state.graceSecondsEdit}
-				>
-					Grace (Seconds)
-				</StatUpdateBlock>
+					editState2 = {this.state.graceSecondsEdit}
+					excercise = {(this.state.graceCurrentMinutes
+						 + ":" + this.state.graceCurrentSeconds)}
+					>
+						Grace
+				</TimeUpdateBlock>
 
-				<StatUpdateBlock
+				<TimeUpdateBlock
 					name = "hellenMinutes"
+					name2 = "hellenSeconds"
 					type = "number"
 					change = {this.handleInputChange}
+					change2 = {this.handleInputChange2}
 					state = {this.state.hellenMinutes}
+					state2 = {this.state.hellenSeconds}
 					edit = {this.editMode}
-					currentState = {this.state.hellenCurrentMinutes}
+					currentState1 = {this.state.hellenCurrentMinutes}
+					currentState2 ={this.state.hellenCurrentSeconds}
 					editState = {this.state.hellenMinutesEdit}
-				>
-					Hellen (Minutes)
-				</StatUpdateBlock>
-				<StatUpdateBlock
-					name = "hellenSeconds"
-					type = "number"
-					change = {this.handleInputChange}
-					state = {this.state.hellenSeconds}
-					edit = {this.editMode}
-					currentState = {this.state.hellenCurrentSeconds}
-					editState = {this.state.hellenSecondsEdit}
-				>
-					Hellen (Seconds)
-				</StatUpdateBlock>
+					editState2 = {this.state.hellenSecondsEdit}
+					excercise = {(this.state.hellenCurrentMinutes
+						 + ":" + this.state.hellenCurrentSeconds)}
+					>
+						Hellen
+				</TimeUpdateBlock>
 
-				<StatUpdateBlock
+				<TimeUpdateBlock
 					name = "fiveKMinutes"
+					name2 = "fiveKSeconds"
 					type = "number"
 					change = {this.handleInputChange}
+					change2 = {this.handleInputChange2}
 					state = {this.state.fiveKMinutes}
+					state2 = {this.state.fiveKSeconds}
 					edit = {this.editMode}
-					currentState = {this.state.fiveKCurrentMinutes}
+					currentState1 = {this.state.fiveKCurrentMinutes}
+					currentState2 ={this.state.fiveKCurrentSeconds}
 					editState = {this.state.fiveKMinutesEdit}
-				>
-					5K (Minutes)
-				</StatUpdateBlock>
+					editState2 = {this.state.fiveKSecondsEdit}
+					excercise = {(this.state.fiveKCurrentMinutes
+						 + ":" + this.state.fiveKCurrentSeconds)}
+					>
+						Five K Run 
+				</TimeUpdateBlock>
 
-				<StatUpdateBlock
-					name = "fiveKSeconds"
-					type = "number"
-					change = {this.handleInputChange}
-					state = {this.state.fiveKSeconds}
-					edit = {this.editMode}
-					currentState = {this.state.fiveKCurrentSeconds}
-					editState = {this.state.fiveKSecondsEdit}
-				>
-					5K (Seconds)
-				</StatUpdateBlock>
-
-				<StatUpdateBlock
+				<TimeUpdateBlock
 					name = "fourHundredMeterMinutes"
+					name2 = "fourHundredMeterSeconds"
 					type = "number"
 					change = {this.handleInputChange}
+					change2 = {this.handleInputChange2}
 					state = {this.state.fourHundredMeterMinutes}
+					state2 = {this.state.fourHundredMeterSeconds}
 					edit = {this.editMode}
-					currentState = {this.state.fourHundredMeterCurrentMinutes}
+					currentState1 = {this.state.fourHundredMeterCurrentMinutes}
+					currentState2 ={this.state.fourHundredMeterCurrentSeconds}
 					editState = {this.state.fourHundredMeterMinutesEdit}
-				>
-					400 Meter (Minutes)
-				</StatUpdateBlock>
-
-				<StatUpdateBlock
-					name = "fourHundredMeterSeconds"
-					type = "number"
-					change = {this.handleInputChange}
-					state = {this.state.fourHundredMeterSeconds}
-					edit = {this.editMode}
-					currentState = {this.state.fourHundredMeterCurrentSeconds}
-					editState = {this.state.fourHundredMeterSecondsEdit}
-				>
-					400 Meter (Seconds)
-				</StatUpdateBlock>
+					editState2 = {this.state.fourHundredMeterSecondsEdit}
+					excercise = {(this.state.fourHundredMeterCurrentMinutes 
+						+ ":" + this.state.fourHundredMeterCurrentSeconds)}
+					>
+						400 Meter
+				</TimeUpdateBlock>
 
 					<button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>
 						Submit
