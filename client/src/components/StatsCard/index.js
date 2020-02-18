@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import API from "../../utils/API";
+import Plot from "react-plotly.js"
+
 
 function UserStats(props) {
 
@@ -8,7 +10,8 @@ function UserStats(props) {
   function getStat(item){
     API.getStat(item, props.userData._id)
     .then(res => {
-      console.log(res);
+      setSelection(res.data);
+      console.log(selectedStat);
     })
 
   }
@@ -18,6 +21,8 @@ function UserStats(props) {
         var seconds = time % 60;
         return minutes + ":" + seconds;
   }
+
+
 
     return (
         <div style={{backgroundColor: "#fff"}}>
@@ -105,6 +110,19 @@ function UserStats(props) {
             </tbody>
           </table>
         </div>
+        {/* <Plot
+        data={[
+          {
+            x: [1, 2, 3],
+            y: [2, 6, 3],
+            type: 'scatter',
+            mode: 'lines+markers',
+            marker: {color: 'red'},
+          },
+          {type: 'bar', x: [1, 2, 3], y: [2, 5, 3]},
+        ]}
+        layout={ {width: 320, height: 240, title: 'A Fancy Plot'} }
+      /> */}
         </div>
     </div>
 
@@ -112,3 +130,5 @@ function UserStats(props) {
 }
 
 export default UserStats;
+
+
