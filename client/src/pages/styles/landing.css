@@ -41,9 +41,6 @@ a {
 	font-size: 1.2em;
 }
 
-div.modal-content {
-	background-color: #2d325a;
-}
 
 /*=============================================
 =           User Stats Styling               =
@@ -70,6 +67,19 @@ div.modal-content {
 .members-page {
 	display: flex;
 	flex-wrap: wrap;
+}
+
+div.modal-content {
+	background-color: #2d325a;
+}
+
+div.modal-header > button.close {
+	color: #fff;
+}
+
+div.modal-footer button {
+	background-color: #4d549e;
+	border: none;
 }
 
 /*=============================================

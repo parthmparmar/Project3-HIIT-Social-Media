@@ -51,10 +51,9 @@ class Register extends Component {
 
 		return (
 			<main id="login-page">
-				
 				<div className="row">
-					<div className="col-12 col-sm-8 col-md-5 col-lg-4 mx-auto">
-					{this.state.errorMsg ? <Alert variant="danger">{this.state.errorMsg}</Alert> : null}
+					<div className="col-12 col-sm-8 col-md-7 col-lg-5 col-xl-4 mx-auto">
+						{this.state.errorMsg ? <Alert variant="danger">{this.state.errorMsg}</Alert> : null}
 						<div id="form-container" className="p-5 mx-2 mt-2 mt-sm-5">
 							<h4 className="text-center">Join WODBook</h4>
 							<form className="mt-4">
@@ -62,7 +61,7 @@ class Register extends Component {
 									<label htmlFor="email">Email Address*</label>
 									<input
 										className="form-control"
-										onChange={this.handleInputChange} 
+										onChange={this.handleInputChange}
 										value={this.state.email}
 										name="email"
 										id="email"

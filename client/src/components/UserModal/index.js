@@ -2,7 +2,6 @@ import React from "react";
 import { Modal, Button, ButtonToolbar } from 'react-bootstrap';
 import UserInfo from "../UserInfo";
 import UserStatsCard from "../StatsCard";
-import "./style.css";
 
 function UserModal(props) {
     return (

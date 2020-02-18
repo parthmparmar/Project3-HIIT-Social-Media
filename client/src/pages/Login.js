@@ -54,7 +54,7 @@ class Landing extends Component {
 		return (
 			<main id="login-page">
 				<div className="row">
-					<div className="col-12 col-sm-8 col-md-5 col-lg-4 mx-auto">
+					<div className="col-12 col-sm-8 col-md-7 col-lg-5 col-xl-4 mx-auto">
 					{this.state.errorMsg ? <Alert variant="danger">{this.state.errorMsg}</Alert> : null}
 						<div id="form-container" className="p-5 mx-2 mt-2 mt-sm-5">
 							<div className="text-center text-white">
