@@ -1,6 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
+import API from "../../utils/API";
 
 function UserStats(props) {
+
+  const [selectedStat, setSelection] = useState("");
+
+  function getStat(item){
+    API.getStat(item, props.userData._id)
+    .then(res => {
+      console.log(res);
+    })
+
+  }
 
   function convertTime (time) {
         var minutes = Math.floor(time / 60);
@@ -21,7 +32,7 @@ function UserStats(props) {
               </tr> */}
             </thead>
             <tbody>
-              <tr>
+              <tr onClick={() => getStat("deadlift")}>
                 <td>Deadlift</td>
                 <td>{props.userData.deadlift.deadlift}</td>
               </tr>
