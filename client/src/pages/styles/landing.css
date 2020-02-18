@@ -73,6 +73,33 @@ div.modal-content {
 }
 
 /*=============================================
+=              Avatar Page                   =
+=============================================*/
+#avatar-page {
+	color: #fff;
+}
+
+#avatar-page svg {
+	display: block;
+	margin: 0 auto;
+	width: 220px;
+}
+
+#avatar-container {
+	width: 425px;
+	margin: 0 auto;
+}
+
+#avatar-submit-btn {
+	background-color: #6e74b9;
+	color: #fff;
+}
+
+#avatar-submit-btn:hover {
+	background-color: #6068b2;
+}
+
+/*=============================================
 =                 Media Queries               =
 =============================================*/
 @media only screen and (max-width: 426px) {
@@ -95,9 +122,16 @@ div.modal-content {
 		justify-content: space-evenly;
 	}
 
-	.member-card  {
-       font-size: 0.75em;
-		}
+	.member-card {
+		font-size: 0.75em;
+	}
+
+	#avatar-container {
+		width: 320px;
+	}
+	#avatar-page svg {
+		width: 180px;
+	}
 }
 
 @media only screen and (min-width: 768px) {
@@ -105,5 +139,3 @@ div.modal-content {
 		margin-top: -150px;
 	}
 }
-
-

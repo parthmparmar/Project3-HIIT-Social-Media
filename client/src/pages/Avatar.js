@@ -61,76 +61,49 @@ class AvatarSetup extends Component {
 		}
 
 		return (
-			<main id="Avatar-Page">
-                <div className="container rounded shadow p-4 mt-4 w-25">
-                    <Avatar
-                        avatarStyle='Transparent'
-                        topType={this.state.topType}
-                        hairColor={this.state.hairColor}
-                        facialHairType={this.state.facialHairType}
-                        facialHairColor={this.state.facialHairColor}
-                        clotheType='Hoodie'
-                        clotheColor={this.state.clotheColor}
-                        skinColor={this.state.skinColor}
-                    />
+			<main id="avatar-page">
+				<div id="avatar-container" className="rounded shadow p-4 mt-4" style={{ background: "#202342" }}>
+					<h4 className="text-center">Customize Avatar</h4>
+					<Avatar
+						avatarStyle="Transparent"
+						topType={this.state.topType}
+						hairColor={this.state.hairColor}
+						facialHairType={this.state.facialHairType}
+						facialHairColor={this.state.facialHairColor}
+						clotheType="Hoodie"
+						clotheColor={this.state.clotheColor}
+						skinColor={this.state.skinColor}
+					/>
 
-                    <form className = "form-group">
-                        <Select
-                            id="topType-input"
-                            itemName="topType"
-                            optionArray = {topTypeArray}
-                            change = {this.handleOnChange}
-                        >
-                            Hair Type
-                        </Select>
+					<form className="form-group">
+						<Select id="topType-input" itemName="topType" optionArray={topTypeArray} change={this.handleOnChange}>
+							Hair Type
+						</Select>
 
-                        <Select
-                            id="hairColor-input"
-                            itemName="hairColor"
-                            optionArray = {hairColorArray}
-                            change = {this.handleOnChange}
-                        >
-                            Hair Color
-                        </Select>
+						<Select id="hairColor-input" itemName="hairColor" optionArray={hairColorArray} change={this.handleOnChange}>
+							Hair Color
+						</Select>
 
-                        <Select
-                            id="facialHairType-input"
-                            itemName="facialHairType"
-                            optionArray = {facialHairTypeArray}
-                            change = {this.handleOnChange}
-                        >
-                            Facial Hair Type
-                        </Select>
+						<Select id="facialHairType-input" itemName="facialHairType" optionArray={facialHairTypeArray} change={this.handleOnChange}>
+							Facial Hair Type
+						</Select>
 
-                        <Select
-                            id="facialHairColor-input"
-                            itemName="facialHairColor"
-                            optionArray = {facialHairColorArray}
-                            change = {this.handleOnChange}
-                        >
-                            Facial Hair Color
-                        </Select>
+						<Select id="facialHairColor-input" itemName="facialHairColor" optionArray={facialHairColorArray} change={this.handleOnChange}>
+							Facial Hair Color
+						</Select>
 
-                        <Select
-                            id="clotheColor-input"
-                            itemName="clotheColor"
-                            optionArray = {clotheColorArray}
-                            change = {this.handleOnChange}
-                        >
-                            Clothe Color
-                        </Select>
+						<Select id="clotheColor-input" itemName="clotheColor" optionArray={clotheColorArray} change={this.handleOnChange}>
+							Clothe Color
+						</Select>
 
-                        <Select
-                            id="skinColor-input"
-                            itemName="skinColor"
-                            optionArray = {skinColorArray}
-                            change = {this.handleOnChange}
-                        >
-                            Skin Color
-                        </Select>
-                        <button className="btn btn-primary" onClick={this.handleFormSubmit}>Submit</button>
-                    </form>
-                </div>
+						<Select id="skinColor-input" itemName="skinColor" optionArray={skinColorArray} change={this.handleOnChange}>
+							Skin Color
+						</Select>
+						<button id="avatar-submit-btn" className="btn" onClick={this.handleFormSubmit}>
+							Submit
+						</button>
+					</form>
+				</div>
 			</main>
 		);
 	}
