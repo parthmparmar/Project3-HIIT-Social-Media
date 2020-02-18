@@ -17,7 +17,7 @@ function UserModal(props) {
         </Modal.Header>
         <Modal.Body>
         <UserInfo userData={props.selectedUser} edit={false}/>
-        <UserStatsCard userData={props.selectedUser} />
+        <UserStatsCard userData={props.selectedUser} disableAddBtn={true}/>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>

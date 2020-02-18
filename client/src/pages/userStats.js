@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
-// import Input from "../components/Input";
 import StatUpdateBlock from "../components/statUpdateBlock";
 import TimeUpdateBlock from "../components/TimeUpdateBlock";
 

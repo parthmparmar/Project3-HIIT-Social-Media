@@ -1,0 +1,57 @@
+#wodCard {
+	background-color: #202342;
+	color: #fff;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  padding: 20px;
+   text-align: center;
+}
+
+iframe {
+  border-radius: 10px;
+  width: 85%;
+  margin: 0 auto;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.582);
+}
+
+#wodBtn {
+  background-color: #6e74b9;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  padding: 15px;
+  font-size: 1.2em;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.582);
+}
+
+#wodBtn:hover {
+  background-color: #5d64b1;
+}
+
+#wodBtn:active {
+  background-color: #4f56a5;
+}
+
+#wodText {
+  font-size: 1.1em;
+  letter-spacing: 1.5px;
+  line-height: 1.4;
+  text-align: left;
+  overflow: auto;
+  height: 150px;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 426px) {
+  iframe {
+  width: 100%;
+}
+#wodText {
+  font-size: 0.78em;
+}
+#wodBtn { 
+  font-size: 0.9em;
+}
+}
