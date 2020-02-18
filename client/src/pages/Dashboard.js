@@ -10,9 +10,9 @@ import { UserContext } from "../App";
 
 function Dashboard() {
 	// Create State from App component UserContext
-	// eslint-disable-next-line
 	const { userInfo, userAuth } = useContext(UserContext);
-	const [userData, setUserData] = userInfo;
+	const [userData, setUserData] = userInfo; // eslint-disable-next-line
+	const [isAuth, setIsAuth] = userAuth;
 	require("js-cookie").remove("location");
 	require("js-cookie").set("location", "/dashboard");
 
@@ -25,7 +25,7 @@ function Dashboard() {
 							<UserInfo userData={userData} assignUser={setUserData} edit={true} />
 						</Col>
 						<Col size="12">
-							<UserStatsCard userData={userData} />
+							<UserStatsCard userData={userData} isAuth={isAuth} />
 						</Col>
 					</Row>
 				</Col>

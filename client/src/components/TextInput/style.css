@@ -1,0 +1,48 @@
+#update-btn {
+  background-color: #6e74b9;
+  color: #fff
+}
+
+#update-btn:hover {
+   background-color: #6068b2;
+}
+
+textarea {
+  resize: none;
+}
+
+.emoji-mart {
+  position: absolute;
+  top: 325px;
+  right: 20px;
+  z-index: 99;
+}
+
+.emoji-mart-bar {
+  display: none;
+}
+
+#emoji-button {
+  float: right;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+#emoji-button img {
+  width: 30px;
+  opacity: 0.6;
+}
+
+#emoji-button:hover img {
+  opacity: 1;
+}
+
+@media screen and (max-width: 510px) {
+  #editStatus {
+    margin-left: -50%;
+  }
+
+  .emoji-mart { 
+    width: 260px !important;
+  }
+}

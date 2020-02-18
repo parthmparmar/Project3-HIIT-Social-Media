@@ -8,7 +8,7 @@ function NavBar(props) {
 	const [isAuthenticated] = userAuth;
 	return (
 		<nav className="navbar navbar-expand-lg">
-			<Link to="/" className="navbar-bran">
+			<Link to="/dashboard" className="navbar-bran">
 				<img id="logo" src="/assets/images/logo.png" alt="logo" />
 			</Link>
 			<button
@@ -25,8 +25,6 @@ function NavBar(props) {
 					<i className="fas fa-bars"></i>
 				</span>
 			</button>
-			{/* Navbar Links */}
-			{/* mr-auto mr-4 mt-2 mt-lg-0 */}
 			<div className="collapse navbar-collapse" id="navbarToggler">
 				<ul className="navbar-nav ml-md-auto">
 					{!isAuthenticated ? (

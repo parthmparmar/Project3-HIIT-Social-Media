@@ -1,0 +1,35 @@
+.stats-update-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2d325a;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.stats-update-btn {
+    background-color: #6e74b9;
+    width: 20%;
+    color: #fff;
+}
+
+.stats-update-btn:hover {
+  background-color: #5d64b1;
+}
+
+.stats-update-btn:active {
+  background-color: #4f56a5;
+}
+
+@media screen and (max-width: 426px) {
+  .stats-update-block {
+    font-size: 0.8em;
+    text-align: center;
+  }
+
+  .stats-update-block p {
+    margin-right: 15px;
+  }
+}
+
