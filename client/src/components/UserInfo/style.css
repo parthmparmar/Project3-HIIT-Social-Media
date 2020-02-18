@@ -1,3 +1,89 @@
 #user-info-card {
-    background-color: transparent!;
+    background-color: #202342;
+    color: #fff;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.8);
+}
+
+.card-body {
+    position: relative;
+}
+
+.card-text {
+    background-color: #2D325A;
+    padding: 15px 25px;
+    letter-spacing: 1.1px;
+    border-radius: 10px;
+    box-shadow: inset 1px 1px 2px #000;
+    height: 150px;
+    overflow: auto;
+}
+
+#edit-status-btn {
+    position: absolute;
+    right: 25px;
+    bottom: 0px;
+    width: 35px;
+    opacity: 0.6;
+    border: none;
+    cursor: pointer;
+}
+
+#edit-status-btn:hover {
+    opacity: 1;
+}
+
+#edit-status-btn img {
+    width: 100%;
+}
+
+#avatar {
+    text-align: center;
+    text-shadow: 2px 2px 2px #000;
+    margin-top: 5px;
+}
+
+#userInfo {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #2D325A;
+    color: #fff;
+    padding: 10px;
+    margin: 0 10px 10px;
+    border-radius: 5px; 
+    text-align: center;
+    text-shadow: 1px 1px 1px #000;
+    border: 1px solid rgba(128, 128, 128, 0.336);
+}
+
+.userInfo__value  {
+    color: #afb3d7;
+    text-shadow: 1px 1px 1px rgb(29, 22, 22);
+}
+
+@media screen and (max-width: 510px) {
+    .card-text {
+        font-size: 14px;
+    }
+
+    .card-title {
+        margin-top: -15px;
+        font-size: 18px;
+    }
+
+    #userInfo {
+        font-size: 14px;
+        flex-wrap: wrap;
+    }
+
+    .userInfo__item:nth-child(1) {
+        flex: 1 33.33%;
+    }
+    .userInfo__item:nth-child(2) {
+        flex: 1 33.33%;
+    }
+    .userInfo__item:nth-child(3) {
+        flex: 1 33.33%;
+        margin-bottom: 10px;
+    }
+
 }
