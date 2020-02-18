@@ -4,11 +4,11 @@
     box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.8);
 }
 
-.card-body {
+#user-info-card .card-body {
     position: relative;
 }
 
-.card-text {
+#user-info-card .card-text {
     background-color: #2D325A;
     padding: 15px 25px;
     letter-spacing: 1.1px;
@@ -61,11 +61,11 @@
 }
 
 @media screen and (max-width: 510px) {
-    .card-text {
+    #user-info-card .card-text {
         font-size: 14px;
     }
 
-    .card-title {
+    #user-info-card .card-title {
         margin-top: -15px;
         font-size: 18px;
     }

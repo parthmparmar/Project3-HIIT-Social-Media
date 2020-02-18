@@ -41,6 +41,10 @@ a {
 	font-size: 1.2em;
 }
 
+div.modal-content {
+	background-color: #2d325a;
+}
+
 /*=============================================
 =           User Stats Styling               =
 =============================================*/
@@ -61,6 +65,14 @@ a {
 }
 
 /*=============================================
+=             Members Page                   =
+=============================================*/
+.members-page {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/*=============================================
 =                 Media Queries               =
 =============================================*/
 @media only screen and (max-width: 426px) {
@@ -78,6 +90,14 @@ a {
 	#user-stats-page h4 {
 		font-size: 1.1em;
 	}
+
+	.members-page {
+		justify-content: space-evenly;
+	}
+
+	.member-card  {
+       font-size: 0.75em;
+		}
 }
 
 @media only screen and (min-width: 768px) {
@@ -85,3 +105,5 @@ a {
 		margin-top: -150px;
 	}
 }
+
+
