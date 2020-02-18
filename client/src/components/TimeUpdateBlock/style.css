@@ -1,0 +1,42 @@
+.time-update-block {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #2d325a;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	padding: 10px;
+}
+
+.time-update-block .form-group
+ {
+	width: 30%;
+	font-size: 0.85em;
+}
+
+.time-update-btn {
+	background-color: #6e74b9;
+	width: 20%;
+	color: #fff;
+}
+
+.time-update-btn:hover {
+	background-color: #5d64b1;
+}
+
+.time-update-btn:active {
+	background-color: #4f56a5;
+}
+
+@media screen and (max-width: 426px) {
+	.time-update-block p {
+    flex: 1 25%;
+    font-size: 0.75em;
+  }
+
+  .time-update-block .form-group {
+    flex: 1 32%;
+    margin: 2px;
+    font-size: 0.7em;
+  }
+}

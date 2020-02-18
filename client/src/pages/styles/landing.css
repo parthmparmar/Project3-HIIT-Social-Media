@@ -45,16 +45,37 @@ a {
 =           User Stats Styling               =
 =============================================*/
 
+#user-stats-page {
+	background-color: #202342;
+	color: #fff;
+	width: 425px;
+}
+
+#user-stats-submit-btn {
+	background-color: #535bac;
+	color: #fff;
+}
+
+#user-stats-submit-btn:hover {
+	background-color: #4d549e;
+}
 
 /*=============================================
 =                 Media Queries               =
 =============================================*/
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 426px) {
 	.tittle {
 		font-size: 2.25em;
 	}
 
 	.lead {
+		font-size: 1.1em;
+	}
+
+	#user-stats-page {
+		width: 320px;
+	}
+	#user-stats-page h4 {
 		font-size: 1.1em;
 	}
 }

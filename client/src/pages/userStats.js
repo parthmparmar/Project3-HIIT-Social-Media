@@ -3,6 +3,7 @@ import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import StatUpdateBlock from "../components/statUpdateBlock";
 import TimeUpdateBlock from "../components/TimeUpdateBlock";
+import "./styles/landing.css";
 
 function deconstruct (fran, type) {
 	var minutes = Math.floor(fran/60);
@@ -130,8 +131,8 @@ class UserStats extends Component {
 		}
 
 		return (
-			<div className="container rounded shadow p-4 mt-4 w-25">
-				<h4>User Registration</h4>
+			<div id="user-stats-page" className="container rounded shadow my-4 p-4">
+				<h4>Add Stats</h4>
 				<form>
 
 				<StatUpdateBlock
@@ -313,7 +314,7 @@ class UserStats extends Component {
 						400 Meter
 				</TimeUpdateBlock>
 
-					<button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>
+					<button id="user-stats-submit-btn" type="submit" className="btn" onClick={this.handleFormSubmit}>
 						Submit
 					</button>
 				</form>
