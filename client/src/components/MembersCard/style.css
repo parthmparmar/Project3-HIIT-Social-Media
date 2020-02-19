@@ -1,8 +1,11 @@
-.member-card{
+.member-card {
+    background-color: #202342;
     cursor: pointer;
-    width: 200px;
+    width: 160px;
     height: 300px;
 };
+
+
 
 
 

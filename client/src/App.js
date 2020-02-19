@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect, useHistory, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import API from "./utils/API";
 
 import NavBar from "./components/NavBar";
@@ -10,7 +10,6 @@ import UserRegister from "./pages/UserRegister";
 import UserStats from "./pages/userStats";
 import Members from "./pages/Members";
 import AvatarSetup from "./pages/Avatar";
-// import PrivateRoute from "./components/PrivateRoute";
 import Login from "./pages/Login";
 
 const Cookies = require("js-cookie");

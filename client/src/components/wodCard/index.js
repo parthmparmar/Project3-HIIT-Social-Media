@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
+import "./style.css";
 
 class WodCard extends Component {
 
@@ -49,16 +50,13 @@ class WodCard extends Component {
   render() 
   {   
     return (
-			<div className="card shadow">
-				{/* <img src="https://www.crossfit.com/wp-content/uploads/2020/02/29154215/Deficit-HSPU-Hobart-768x432.png" className="card-img-top" alt="..." /> */}
+			<div id="wodCard" className="card mt-3 mt-md-3 mt-lg-0">
+        <h4>Workout of the Day</h4>
         <iframe width="100%" height="315" src={this.state.video}></iframe>
 				<div className="card-body">
-					<h5 className="card-title">Random Wod!</h5>
-					<h5 className="card-title">{this.state.title}</h5>
-          {/* <h5 className="card-title">Test</h5> */}
-					<p className="card-text">{this.state.wod}</p>
-          {/* <p className="card-text">Test</p> */}
-          <button type="button" className="btn btn-secondary" onClick= {this.generateWod.bind(this)} >
+					<h5 className="card-title text-center">{this.state.title}</h5>
+					<p id="wodText" className="card-text">{this.state.wod}</p>
+          <button id="wodBtn" type="button" className="btn" onClick= {this.generateWod.bind(this)} >
 						Generate Random Wod
 					</button>
 				</div>

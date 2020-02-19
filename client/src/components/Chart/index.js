@@ -18,7 +18,7 @@ export default class LineGraph extends Component {
                         label: this.props.title,
                         data: this.props.data,
                         // backgroundColor: "rgb(51,55,107)",
-                        borderColor: "rgb(55,55,107)"
+                        borderColor: "rgb(93, 99, 177)"
                     }
                 ]
             },

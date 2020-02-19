@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, Button, ButtonToolbar } from 'react-bootstrap';
 import LineGraph from "../Chart";
+import "./style.css";
 
 function UserModal(props) {
     return (
@@ -11,7 +12,7 @@ function UserModal(props) {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
+          <Modal.Title id="stat-name contained-modal-title-vcenter">
             {props.stat}
           </Modal.Title>
         </Modal.Header>

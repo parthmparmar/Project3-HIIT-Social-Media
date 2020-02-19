@@ -1,9 +1,16 @@
 import React, {useState} from "react";
 import API from "../../utils/API";
 import ChartModal from "../ChartModal";
-
+import { Link } from "react-router-dom";
+import StatsItem from "./StatsItem";
+import "./style.css";
 
 function UserStats(props) {
+	function convertTime(time) {
+		var minutes = Math.floor(time / 60);
+		var seconds = time % 60;
+		return minutes + ":" + seconds;
+	}
 
   const [data, setData] = useState("");
   const [labels, setLabels] = useState("");
@@ -11,15 +18,16 @@ function UserStats(props) {
   const [stat, setStat] = useState("");
 
   function getStat(item, statName){
-    API.getStat(item, props.userData._id)
-    .then(res => {
-      console.log(res.data);
-      setStat(statName);
-      splitData(res.data, item);
-      setDisplay(true);
-    })
-
-  }
+    if(window.location.pathname == "/dashboard"){
+      API.getStat(item, props.userData._id)
+      .then(res => {
+        console.log(res.data);
+        setStat(statName);
+        splitData(res.data, item);
+        setDisplay(true);
+      });
+    };
+  };
 
   function splitData(array, item){
     var dataPoints = [];
@@ -48,92 +56,34 @@ function UserStats(props) {
 
 
     return (
-        <div style={{backgroundColor: "#fff"}}>
-          <div className="row">
-          <i className="fas fa-dumbbell col-1"></i>
-            <div className= "col-3">
-        <table className="table .table-striped table-bordered">
-            <thead>
-              {/* <tr>
-                <th scope="col">Exercise</th>
-                <th scope="col">Weight/Time</th>
-              </tr> */}
-            </thead>
-            <tbody>
-              <tr onClick={() => getStat("deadlift", "Deadlift")}>
-                <td>Deadlift</td>
-                <td>{props.userData.deadlift.deadlift}</td>
-              </tr>
-              <tr onClick={() => getStat("backSquat")}>
-                <td>Back Squat</td>
-                <td>{props.userData.backSquat.backSquat}</td>
-              </tr>
-              <tr>
-                <td>Snatch</td>
-                <td>{props.userData.snatch.snatch}</td>
-              </tr>
-              <tr>
-                <td>Clean And Jerk</td>
-                <td>{props.userData.cleanJerk.cleanJerk}</td>
-              </tr>
-              <tr>
-                <td>Overhead Press</td>
-                <td>{props.userData.overHeadPress.overHeadPress}</td>
-              </tr>
-            </tbody>
-          </table>
-          </div>
-          <i className="fas fa-dumbbell col-1"></i>
-          <div className= "col-3">
-          <table className="table .table-striped table-bordered">
-            <thead>
-              {/* <tr>
-                <th scope="col">Exercise</th>
-                <th scope="col">Weight/Time</th>
-              </tr> */}
-            </thead>
-            <tbody>
-              <tr>
-                <td>Max Pull Ups</td>
-                <td>{props.userData.maxPullUps.maxPullUps}</td>
-              </tr>
-              <tr>
-                <td>Fran</td>
-                <td>{convertTime(props.userData.fran.fran)}</td>
-              </tr>
-              <tr>
-                <td>Grace</td>
-                <td>{convertTime(props.userData.grace.grace)}</td>
-              </tr>
-              <tr>
-                <td>Hellen</td>
-                <td>{convertTime(props.userData.hellen.hellen)}</td>
-              </tr>
-            </tbody>
-          </table>
-          </div>
-          <i className="fas fa-running col-1"></i>
-          <div className="col-3">
-          <table className="table .table-striped table-bordered">
-            <thead>
-              {/* <tr>
-                <th scope="col">Exercise</th>
-                <th scope="col">Weight/Time</th>
-              </tr> */}
-            </thead>
-            <tbody>
-              <tr>
-                <td>5k Run</td>
-                <td>{convertTime(props.userData.fiveK.fiveK)}</td>
-              </tr>
-              <tr>
-                <td>400m Sprint</td>
-                <td>{convertTime(props.userData.fourHundredMeter.fourHundredMeter)}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        </div>
+      <div>
+      <div id="stats-card">
+			<div id="stats-card__header">
+				<h5>Stats</h5>
+				{!props.disableAddBtn ? (
+					<div id="edit-stats-btn">
+						<Link to="/userStats">
+							<img src="./icons/edit-stats.png" alt="" />
+							Add
+						</Link>
+					</div>
+				) : null}
+			</div>
+			<div className="stats-card__items">
+				<StatsItem statsImg="./icons/deadlift.png" statsName="Deadlift" statsValue={props.userData.deadlift.deadlift} click={getStat} item="deadlift"/>
+				<StatsItem statsImg="./icons/backsquat.png" statsName="Backsquat" statsValue={props.userData.backSquat.backSquat} click={getStat} item="backSquat"/>
+				<StatsItem statsImg="./icons/snatch.png" statsName="Snatch" statsValue={props.userData.snatch.snatch} click={getStat} item="snatch"/>
+				<StatsItem statsImg="./icons/cleanAndJerk.png" statsName="Clean and Jerk" statsValue={props.userData.cleanJerk.cleanJerk} click={getStat} item="cleanJerk"/>
+				<StatsItem statsImg="./icons/overheadPress.png" statsName="Overhead Press" statsValue={props.userData.overHeadPress.overHeadPress} click={getStat} item="overHeadPress"/>
+				<StatsItem statsImg="./icons/pullUp.png" statsName="Max Pull-Ups" statsValue={props.userData.maxPullUps.maxPullUps} click={getStat} item="maxPullups"/>
+				<StatsItem statsImg="./icons/fran.png" statsName="Fran" statsValue={convertTime(props.userData.fran.fran)} click={getStat} item="fran"/>
+				<StatsItem statsImg="./icons/grace.png" statsName="Grace" statsValue={convertTime(props.userData.grace.grace)} click={getStat} item="grace"/>
+				<StatsItem statsImg="./icons/helen.png" statsName="Hellen" statsValue={convertTime(props.userData.hellen.hellen)} click={getStat} item="hellen"/>
+				<StatsItem statsImg="./icons/run.png" statsName="5K Run" statsValue={convertTime(props.userData.fiveK.fiveK)} click={getStat} item="fiveK"/>
+				<StatsItem statsImg="./icons/sprint.png" statsName="400m Sprint" statsValue={convertTime(props.userData.fourHundredMeter.fourHundredMeter)} click={getStat} item="fourHundredMeter"/>
+			</div>
+		</div>
+    <div>
         {data && <ChartModal
             show={display}
             onHide={() => setShowFalse()}
@@ -143,10 +93,8 @@ function UserStats(props) {
         >
         </ChartModal>}
     </div>
-
+    </div>
     )
 }
 
 export default UserStats;
-
-
