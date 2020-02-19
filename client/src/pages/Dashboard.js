@@ -8,6 +8,9 @@ import Col from "../components/Col";
 import { UserContext } from "../App";
 
 
+const label = ["Jan", "Feb", "March"];
+const data = [86, 67, 91];
+
 function Dashboard() {
 	// Create State from App component UserContext
 	// eslint-disable-next-line

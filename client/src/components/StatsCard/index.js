@@ -1,20 +1,43 @@
 import React, {useState} from "react";
 import API from "../../utils/API";
-import Plot from "react-plotly.js"
+import ChartModal from "../ChartModal";
 
 
 function UserStats(props) {
 
-  const [selectedStat, setSelection] = useState("");
+  const [data, setData] = useState("");
+  const [labels, setLabels] = useState("");
+  const [display, setDisplay] = useState(false);
+  const [stat, setStat] = useState("");
 
-  function getStat(item){
+  function getStat(item, statName){
     API.getStat(item, props.userData._id)
     .then(res => {
-      setSelection(res.data);
-      console.log(selectedStat);
+      console.log(res.data);
+      setStat(statName);
+      splitData(res.data, item);
+      setDisplay(true);
     })
 
   }
+
+  function splitData(array, item){
+    var dataPoints = [];
+    var labels = [];
+
+    array.forEach(element => {
+      dataPoints.unshift(element[item]);
+      labels.unshift(element.date.substring(0, 10));
+    });
+
+    setData(dataPoints);
+    setLabels(labels);
+
+  }
+
+  function setShowFalse () {
+      setDisplay(false);
+    };
 
   function convertTime (time) {
         var minutes = Math.floor(time / 60);
@@ -37,11 +60,11 @@ function UserStats(props) {
               </tr> */}
             </thead>
             <tbody>
-              <tr onClick={() => getStat("deadlift")}>
+              <tr onClick={() => getStat("deadlift", "Deadlift")}>
                 <td>Deadlift</td>
                 <td>{props.userData.deadlift.deadlift}</td>
               </tr>
-              <tr>
+              <tr onClick={() => getStat("backSquat")}>
                 <td>Back Squat</td>
                 <td>{props.userData.backSquat.backSquat}</td>
               </tr>
@@ -110,20 +133,15 @@ function UserStats(props) {
             </tbody>
           </table>
         </div>
-        {/* <Plot
-        data={[
-          {
-            x: [1, 2, 3],
-            y: [2, 6, 3],
-            type: 'scatter',
-            mode: 'lines+markers',
-            marker: {color: 'red'},
-          },
-          {type: 'bar', x: [1, 2, 3], y: [2, 5, 3]},
-        ]}
-        layout={ {width: 320, height: 240, title: 'A Fancy Plot'} }
-      /> */}
         </div>
+        {data && <ChartModal
+            show={display}
+            onHide={() => setShowFalse()}
+            labels = {labels}
+            data = {data}
+            stat = {stat}
+        >
+        </ChartModal>}
     </div>
 
     )
