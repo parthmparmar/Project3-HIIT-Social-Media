@@ -23,7 +23,14 @@ export default class LineGraph extends Component {
                 ]
             },
             options: {
-                //Customize chart options
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        time: {
+                            unit: 'day'
+                        }
+                    }]
+                }
             }
         });
     }

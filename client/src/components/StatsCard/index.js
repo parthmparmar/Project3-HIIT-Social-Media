@@ -35,7 +35,7 @@ function UserStats(props) {
 
     array.forEach(element => {
       dataPoints.unshift(element[item]);
-      labels.unshift(element.date.substring(0, 10));
+      labels.unshift(new Date(element.date));
     });
 
     setData(dataPoints);
