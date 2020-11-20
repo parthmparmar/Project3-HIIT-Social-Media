@@ -28,7 +28,8 @@ export default class LineGraph extends Component {
                         type: 'time',
                         time: {
                             unit: 'day'
-                        }
+                        },
+                        distribution: 'series'
                     }]
                 }
             }
