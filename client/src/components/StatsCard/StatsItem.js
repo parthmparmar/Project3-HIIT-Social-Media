@@ -3,7 +3,7 @@ import "./style.css";
 
 export default function(props) {
 	return (
-			<div className="stats-card__item">
+			<div className="stats-card__item" onClick={()=> props.click(props.item, props.statsName)}>
 				<div className="row">
 					<div className="col-5">
 						<img src={props.statsImg} style={{ width: "100%" }} alt="" />

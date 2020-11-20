@@ -37,4 +37,8 @@ router
 	.route("/avatar")
 	.post(usersController.avatar)
 
+router
+	.route("/stats/get/:type/:userId")
+	.get(usersController.getStat)
+
 module.exports = router;

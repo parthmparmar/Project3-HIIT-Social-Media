@@ -23,6 +23,7 @@
     "avataaars": "^1.2.1",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
+    "chart.js": "^2.9.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "google-map-react": "^1.1.6",

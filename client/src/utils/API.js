@@ -38,6 +38,9 @@ export default {
 
 	addAvatar: function(userData){
 		return axios.post("/api/user/avatar", userData)
-	}
+	},
 
+	getStat: function(type, userId) {
+		return axios.get("/api/user/stats/get/"+type+"/"+userId);
+	}
 };

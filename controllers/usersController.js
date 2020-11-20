@@ -197,5 +197,16 @@ module.exports = {
 				message: "Logged out"
 			});
 		});
+	},
+
+	getStat: function(req, res) {
+		db.User.findById(req.params.userId, function(err, dbUser){
+			if (err){
+				res.status(500).send({message: "Error in finding user"});
+				return;
+			}
+			res.status(200).json(dbUser[req.params.type]);
+		});
+
 	}
 };
