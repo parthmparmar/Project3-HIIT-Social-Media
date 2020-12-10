@@ -32,13 +32,13 @@ class WodCard extends Component {
               wods: res.data
           }
       )
-      console.log()
-      console.log(this.state.wods)
-      console.log(this.state.wods[0].title)
-      console.log(this.state.video)
+      // console.log()
+      // console.log(this.state.wods)
+      // console.log(this.state.wods[0].title)
+      // console.log(this.state.video)
        let newState = {...this.state}
       let randomWod = this.state.wods[Math.floor(Math.random() * this.state.wods.length)]
-      console.log(randomWod);
+      // console.log(randomWod);
       newState.title = randomWod.title;
       newState.wod = randomWod.wod;
       newState.video = randomWod.video;

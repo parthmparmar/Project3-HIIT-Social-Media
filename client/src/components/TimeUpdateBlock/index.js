@@ -1,6 +1,5 @@
 import React from "react";
 import Input from "../Input";
-import { PromiseProvider } from "mongoose";
 import "./style.css";
 
 function TimeUpdateBlock(props) {
@@ -20,7 +19,7 @@ function TimeUpdateBlock(props) {
 				</Input>
 			)}
 			{props.editState && (
-				<Input id={props.name2} name={props.name2} type={props.type} change={props.change} state2={props.state2}>
+				<Input id={props.name2} name={props.name2} type={props.type} change={props.change} state={props.state2}>
 					New / Update {props.children} Seconds:
 				</Input>
 			)}

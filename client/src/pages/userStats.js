@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import StatUpdateBlock from "../components/statUpdateBlock";
 import TimeUpdateBlock from "../components/TimeUpdateBlock";
 import "./styles/landing.css";
@@ -77,10 +77,18 @@ class UserStats extends Component {
 
 	handleInputChange = event => {
 		const { name, value } = event.target;
-		this.setState({
-			[name]: value,
-		});
+		if (parseInt(value) > 0) {
+			this.setState({
+				[name]: value,
+			});
+		}
 	};
+
+	handleCancel = event => {
+		event.preventDefault();
+		this.props.history.push('/dashboard');
+	};
+
 	editMode = field => {
 		let fieldEdit = field+"Edit";
 		this.setState({
@@ -105,14 +113,14 @@ class UserStats extends Component {
 		{fourHundredMeter: this.state.fourHundredMeterMinutes ? parseInt(this.state.fourHundredMeterMinutes * 60) + parseInt(this.state.fourHundredMeterSeconds) : ""},
 		];
 		let filteredDataArray  = dataArray.filter(value => Object.values(value) != "");
-		console.log(filteredDataArray);
+		// console.log(filteredDataArray);
 			if (filteredDataArray) {
 				API.updateStats({
 					userId: this.props.userData._id,
 		            filteredDataArray
 				})
 					.then(res => {
-		      console.log(res.data);
+		    //   console.log(res.data);
 		      this.props.assignUser(res.data);
 						this.setState({ redirect: "/dashboard" });
 					})
@@ -125,7 +133,7 @@ class UserStats extends Component {
 	render() {
 		require("js-cookie").remove("location");
 		require("js-cookie").set("location", "/userStats");
-		console.log(this.props.userData.backSquat.backSquat)
+		// console.log(this.props.userData.backSquat.backSquat)
 		if (this.state.redirect) {
 			return <Redirect to={this.state.redirect} />;
 		}
@@ -300,7 +308,7 @@ class UserStats extends Component {
 					name2 = "fourHundredMeterSeconds"
 					type = "number"
 					change = {this.handleInputChange}
-					change2 = {this.handleInputChange2}
+					// change2 = {this.handleInputChange}
 					state = {this.state.fourHundredMeterMinutes}
 					state2 = {this.state.fourHundredMeterSeconds}
 					edit = {this.editMode}
@@ -314,12 +322,17 @@ class UserStats extends Component {
 						400 Meter
 				</TimeUpdateBlock>
 
-					<button id="user-stats-submit-btn" type="submit" className="btn" onClick={this.handleFormSubmit}>
-						Submit
-					</button>
+					<div style={{display: 'flex'}}>
+						<button className="user-stats-submit-btn" type="submit" onClick={this.handleCancel}>
+							Cancel
+						</button>
+						<button className="user-stats-submit-btn" type="submit" onClick={this.handleFormSubmit}>
+							Submit
+						</button>
+					</div>
 				</form>
 			</div>
 		);
 	}
 }
-export default UserStats;
+export default withRouter(UserStats);

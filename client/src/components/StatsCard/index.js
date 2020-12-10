@@ -21,7 +21,7 @@ function UserStats(props) {
     if(window.location.pathname == "/dashboard"){
       API.getStat(item, props.userData._id)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setStat(statName);
         splitData(res.data, item);
         setDisplay(true);
