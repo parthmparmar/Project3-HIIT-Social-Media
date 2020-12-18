@@ -52,12 +52,13 @@ a {
 	width: 425px;
 }
 
-#user-stats-submit-btn {
+.user-stats-submit-btn {
 	background-color: #535bac;
 	color: #fff;
+	margin: 5px;
 }
 
-#user-stats-submit-btn:hover {
+.user-stats-submit-btn:hover {
 	background-color: #4d549e;
 }
 
