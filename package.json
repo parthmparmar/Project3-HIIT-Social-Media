@@ -21,7 +21,7 @@
   "homepage": "https://github.com/parthmparmar/Project3-HIIT-Social-Media#readme",
   "dependencies": {
     "avataaars": "^1.2.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "chart.js": "^2.9.3",
     "dotenv": "^8.2.0",
