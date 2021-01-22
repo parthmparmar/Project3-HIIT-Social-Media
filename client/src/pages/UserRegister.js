@@ -3,9 +3,17 @@ import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import Input from "../components/Input";
 import Select from "../components/Select"
-import "./styles/landing.css";
-import { compareSync } from "bcryptjs";
 import { Alert } from "react-bootstrap";
+import "./styles/landing.css";
+
+// Remove current cookie data if any and update it with new url location
+/* When user refresh the browser, app is redirected to landing page.
+   To redirect to current page instead of landing page, the current url 
+   is stored in cookies. The Lading page has a line of code that reads the 
+   cookies, if a url location property is found -- this get redirected 
+   to the location found on the cookie */
+//require("js-cookie").remove("location");
+// require("js-cookie").set("location", "/userRegister");
 
 const genderArray = ["Male", "Female"]
 const feetArray = [3, 4, 5, 6, 7];
@@ -45,7 +53,7 @@ class UserRegister extends Component {
 		let weightError = true;
 		let errorMsg = "";
 			// check first name
-			if(this.state.firstName == ""){
+			if(this.state.firstName === ""){
 				console.log("first name true")
 				firstNameError = true;
 				// this.setState({firstNameError : true});
@@ -56,7 +64,7 @@ class UserRegister extends Component {
 			};
 
 			// check last name
-			if(this.state.lastName == ""){
+			if(this.state.lastName === ""){
 				console.log("last name true")
 				lastNameError = true;
 				// this.setState({lastNameError : true});
@@ -78,7 +86,7 @@ class UserRegister extends Component {
 			if(!this.state.weight){
 				weightError = false;
 			}
-			else if (parseInt(this.state.weight) != "number" && parseInt(this.state.weight) < 0) {
+			else if (parseInt(this.state.weight) !== "number" && parseInt(this.state.weight) < 0) {
 				weightError = true;
 				errorMsg = "Weight must be a positive number or you can leave it empty";
 			}
@@ -87,7 +95,7 @@ class UserRegister extends Component {
 				errorMsg = "";
 			};
 
-			if(firstNameError == false && lastNameError == false && birthdayError == false && weightError == false){
+			if(firstNameError === false && lastNameError === false && birthdayError === false && weightError === false){
 
 				this.setState({
 						formError : false,
@@ -126,7 +134,8 @@ class UserRegister extends Component {
 				gender: this.state.gender.toLowerCase(),
 				box: this.state.box.toLowerCase(),
 				height: parseInt(this.state.feet * 12) + parseInt(this.state.inches),
-				weight: this.state.weight
+				weight: this.state.weight,
+				profileCompleted: true
 			})
 				.then(res => {
           console.log(res.data);

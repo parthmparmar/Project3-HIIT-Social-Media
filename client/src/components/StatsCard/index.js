@@ -18,7 +18,7 @@ function UserStats(props) {
   const [stat, setStat] = useState("");
 
   function getStat(item, statName){
-    if(window.location.pathname == "/dashboard"){
+    if(window.location.pathname === "/dashboard"){
       API.getStat(item, props.userData._id)
       .then(res => {
         // console.log(res.data);
@@ -46,14 +46,6 @@ function UserStats(props) {
   function setShowFalse () {
       setDisplay(false);
     };
-
-  function convertTime (time) {
-        var minutes = Math.floor(time / 60);
-        var seconds = time % 60;
-        return minutes + ":" + seconds;
-  }
-
-
 
     return (
       <div>

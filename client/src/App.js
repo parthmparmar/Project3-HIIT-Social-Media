@@ -54,8 +54,8 @@ function App() {
 			<Router>
 				<NavBar logOutUser={logOutUser} userData={userData}/>
 				<Switch>
-					<Route exact path="/login" render={props => <Login isAuthed={setIsAuthenticated} assignUser={setUserData} />} />
-					<Route exact path="/register" render={props => <Register />} />
+					<Route exact path="/login" render={props => isAuthenticated ? <Redirect to={"/dashboard"} /> : <Login isAuthed={setIsAuthenticated} assignUser={setUserData} />} />
+					<Route exact path="/register" render={props => isAuthenticated ? <Redirect to={"/dashboard"} /> : <Register />} />
 					<PrivateRoute exact path="/dashboard" isAuthed={isAuthenticated}>
 						<Dashboard userData={userData} assignUser={setUserData} />
 					</PrivateRoute>

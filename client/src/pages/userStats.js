@@ -112,7 +112,7 @@ class UserStats extends Component {
 		{fiveK: this.state.fiveKMinutes ? parseInt(this.state.fiveKMinutes * 60) + parseInt(this.state.fiveKSeconds) : ""},
 		{fourHundredMeter: this.state.fourHundredMeterMinutes ? parseInt(this.state.fourHundredMeterMinutes * 60) + parseInt(this.state.fourHundredMeterSeconds) : ""},
 		];
-		let filteredDataArray  = dataArray.filter(value => Object.values(value) != "");
+		let filteredDataArray  = dataArray.filter(value => Object.values(value) !== "");
 		// console.log(filteredDataArray);
 			if (filteredDataArray) {
 				API.updateStats({

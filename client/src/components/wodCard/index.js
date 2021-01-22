@@ -22,7 +22,7 @@ class WodCard extends Component {
     newState.title = randomWod.title;
     newState.wod = randomWod.wod;
     newState.video = randomWod.video;
-    this.setState(this.state = newState);
+    this.setState({...newState});
   }
 
   loadWods() {
@@ -52,7 +52,7 @@ class WodCard extends Component {
     return (
 			<div id="wodCard" className="card mt-3 mt-md-3 mt-lg-0">
         <h4>Workout of the Day</h4>
-        <iframe width="100%" height="315" src={this.state.video}></iframe>
+        <iframe width="100%" height="315" src={this.state.video} title="Random WOD of the Day"></iframe>
 				<div className="card-body">
 					<h5 className="card-title text-center">{this.state.title}</h5>
 					<p id="wodText" className="card-text">{this.state.wod}</p>

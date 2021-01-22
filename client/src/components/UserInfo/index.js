@@ -66,9 +66,9 @@ function UserInfo(props) {
 							<p className="card-text">{props.userData.status.status ? props.userData.status.status : "No Status"}</p>
 							{props.edit
 								? statusEdit || (
-										<a id="edit-status-btn" className="" onClick={() => setStatusEdit(true)}>
-											<img src="./icons/edit-status.png" />
-										</a>
+										<div id="edit-status-btn" className="" onClick={() => setStatusEdit(true)}>
+											<img src="./icons/edit-status.png" alt="Edit icon"/>
+										</div>
 								  )
 								: null}
 
@@ -102,7 +102,7 @@ function UserInfo(props) {
 					</div>
 					<div className="userInfo__item">
 						<div>WEIGHT</div>
-						<div className="userInfo__value">{props.userData.weight.weight + "Lbs" || "None"} </div>
+						<div className="userInfo__value">{props.userData.weight.weight ? props.userData.weight.weight + "Lbs" : "None"} </div>
 					</div>
 					<div className="userInfo__item">
 						<div>BOX</div>

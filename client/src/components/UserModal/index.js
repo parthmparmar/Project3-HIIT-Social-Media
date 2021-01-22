@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button, ButtonToolbar } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import UserInfo from "../UserInfo";
 import UserStatsCard from "../StatsCard";
 

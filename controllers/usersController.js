@@ -5,7 +5,7 @@ const isAuth = require("../auth/isAuth");
 module.exports = {
 	// Find user and authenticate
 	findUser: function(req, res) {
-		console.log(req.body);
+		//console.log(req.body);
 		//checks that email is present or not
 		db.User.findOne({ email: req.body.email }, (err, user) => {
 			if (!user) {
@@ -43,7 +43,8 @@ module.exports = {
 			lastName: req.body.lastName,
 			birthday: req.body.birthday,
 			gender: req.body.gender,
-			box: req.body.box
+			box: req.body.box,
+			isUserProfileComplete: req.body.profileCompleted
 		};
 		let heightObj = { height: req.body.height, date: new Date() };
 		let weightObj = { weight: req.body.weight, date: new Date() };
@@ -98,7 +99,7 @@ module.exports = {
 
 	getAllMembers: function(req, res) {
 		let membersFilteredArray = [];
-		db.User.find({}, function(err, dbMembers) {
+		db.User.find({isUserProfileComplete: true}, function(err, dbMembers) {
 			if (err) {
 				res.status(500).send({ message: "Error in finding members" });
 				return;
