@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Chart from "chart.js";
-import { Modal, Button, ButtonToolbar } from 'react-bootstrap';
 
 export default class LineGraph extends Component {
     chartRef = React.createRef();

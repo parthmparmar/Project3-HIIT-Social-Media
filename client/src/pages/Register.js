@@ -32,7 +32,7 @@ class Register extends Component {
 					password: this.state.password
 				})
 					.then(res => {
-						console.log(res.data);
+						//console.log(res.data);
 						this.setState({ redirect: "/login" });
 					})
 					.catch((err) => {

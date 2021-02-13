@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import "./styles/landing.css";
-import Row from "../components/Row";
 import MembersCard from "../components/MembersCard";
-import Wrapper from "../components/Wrapper";
 import UserModal from "../components/UserModal";
 import "./styles/landing.css";
 

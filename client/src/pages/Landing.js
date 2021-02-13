@@ -3,7 +3,6 @@ import API from "../utils/API";
 import { Redirect, Link } from "react-router-dom";
 import "./styles/landing.css";
 import { UserContext } from "../App";
-import UserStats from "../components/StatsCard";
 import { Alert } from "react-bootstrap";
 const Cookies = require("js-cookie");
 
@@ -48,7 +47,11 @@ function Landing() {
 		if (isAuthenticated && userData.firstName) {
 			setRedirect(Cookies.get("location") || "/dashboard");
 		}
-	});
+		// If user profile is not complete, User is redirected to Registration page
+		if (isAuthenticated && !userData.isUserProfileComplete) {
+			setRedirect(Cookies.get("location") || "/userRegister");
+		}
+	}, [isAuthenticated, userData]);
 
 	// If user is authenticated redirect to dashboard
 	if (redirect) {

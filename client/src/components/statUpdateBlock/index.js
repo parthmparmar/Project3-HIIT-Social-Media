@@ -1,6 +1,5 @@
 import React from "react";
 import Input from "../Input";
-import { PromiseProvider } from "mongoose";
 import "./style.css";
 
 function statUpdateBlock(props) {

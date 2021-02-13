@@ -126,7 +126,11 @@ const UserSchema = new Schema({
 			fourHundredMeter: Number,
 			date: Date
 		}
-	]
+	],
+	isUserProfileComplete: { // Property flag to check if user provided required profile info
+    	type: Boolean,
+    	default: false,
+  	},
 });
 
 // Hashing the password before saving to mongoDB
@@ -193,7 +197,8 @@ UserSchema.methods.filterUserData = function() {
 		grace: this.grace[0] || { grace: "" },
 		hellen: this.hellen[0] || { hellen: "" },
 		fiveK: this.fiveK[0] || { fiveK: "" },
-		fourHundredMeter: this.fourHundredMeter[0] || { fourHundredMeter: "" }
+		fourHundredMeter: this.fourHundredMeter[0] || { fourHundredMeter: "" },
+		isUserProfileComplete: this.isUserProfileComplete
 	};
 };
 
