@@ -99,7 +99,7 @@ class UserStats extends Component {
 	handleFormSubmit = event => {
 		event.preventDefault();
 		let dataArray = [
-		{height: this.state.height},
+		{weight: this.state.weight},
 		{backSquat: this.state.backSquat},
 		{cleanJerk: this.state.cleanJerk},
 		{snatch: this.state.snatch},
@@ -112,8 +112,8 @@ class UserStats extends Component {
 		{fiveK: this.state.fiveKMinutes ? parseInt(this.state.fiveKMinutes * 60) + parseInt(this.state.fiveKSeconds) : ""},
 		{fourHundredMeter: this.state.fourHundredMeterMinutes ? parseInt(this.state.fourHundredMeterMinutes * 60) + parseInt(this.state.fourHundredMeterSeconds) : ""},
 		];
-		let filteredDataArray  = dataArray.filter(value => Object.values(value) !== "");
-		// console.log(filteredDataArray);
+		let filteredDataArray  = dataArray.filter(item => item[Object.keys(item)[0]] !== "");
+
 			if (filteredDataArray) {
 				API.updateStats({
 					userId: this.props.userData._id,
