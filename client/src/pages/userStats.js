@@ -76,13 +76,17 @@ class UserStats extends Component {
 	};
 
 	handleInputChange = event => {
-		const { name, value } = event.target;
-		if (parseInt(value) > 0) {
-			this.setState({
-				[name]: value,
-			});
-		}
-	};
+    let { name, value } = event.target;
+	
+	/* Validate Input Stats: only numbers allowed */
+	value = value.replace(/[^\d]/, "");
+
+	if (parseInt(value) !== 0) {
+		this.setState({
+		[name]: value,
+		});
+  	}
+  };
 
 	handleCancel = event => {
 		event.preventDefault();
